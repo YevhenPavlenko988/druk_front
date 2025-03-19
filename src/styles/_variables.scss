@@ -1,0 +1,172 @@
+// Colors
+//
+// white color
+$white-100: rgb(255, 255, 255); // #FFFFFF;
+//
+// black color
+$black-100: rgb(23, 27, 33); // #1B1B1E
+//
+// blue color
+$blue-main: #1265A8; // #1265A8
+$blue-main-40: #1265A840; // #1265A8
+$blue-light: #3186CB; // #3186CB
+//
+// gray color
+$gray-dark: #8A8A90; // #8A8A90
+$gray-light: #A4AAB1; // #A4AAB1
+//
+// brand colors
+$brand--color: $blue-main;
+$brand--bg: rgb(238, 242, 248); // #EEF2F8
+// -------------------------------------
+
+// Fonts
+$font-family: 'Geologica';  // sans-serif;
+//
+$font-size-32: 32px;
+$font-size-28: 28px;
+$font-size-24: 24px;
+$font-size-20: 20px;
+$font-size-18: 18px;
+$font-size-16: 16px;
+$font-size-15: 15px;
+$font-size-14: 14px;
+$font-size-13: 13px;
+$font-size-12: 12px;
+$font-size-10: 10px;
+//
+$font--bold: 600;
+$font--medium: 500;
+$font--regular: 400;
+$font--light: 300;
+//
+$font--32-line-height: 40px;
+$font--28-line-height: 34px;
+$font--24-line-height: 30px;
+$font--20-line-height: 26px;
+$font--18-line-height: 24px;
+$font--16-line-height: 22px;
+$font--15-line-height: 22px;
+$font--14-line-height: 20px;
+$font--13-line-height: 20px;
+$font--12-line-height: 18px;
+$font--10-line-height: 16px;
+// -------------------------------------
+
+// Borders
+//$border-width: 0.8px;
+//$border-style: solid;
+//$border-color: $dark-12;
+// -------------------------------------
+
+// Shadow
+$shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.24);
+$shadow-dropdown: 0px 4px 12px 0px rgba(0, 0, 0, 0.20);
+$shadow-dialog: 0px 4px 32px 0px rgba(0, 0, 0, 0.16);
+$shadow-light: 0px 10px 20px 0px rgba(0, 0, 0, 0.12);
+// -------------------------------------
+
+// Breakpoints
+$min: 320px; // IPhone 5/SE             = 320px
+$xxs: 375px; // IPhone 6/7/8, IPhone X  = 375px
+$xs: 500px; // ~ IPhone 6/7/8 Plus,     = 500px
+$sm: 660px; // Tablet                   = 660px
+$md: 768px; // Tablet                   = 768px
+$lg: 992px; // Tablet                   = 992px
+$xl: 1170px; // Laptop                  = 1170px
+$hd: 1280px; // Laptop                  = 1280px
+$wxga: 1440px; // Laptop                = 1440px
+$fhd: 1920px; // >= Desktop             = 1920px
+
+$media-breakpoints: (
+    'min': $min, // IPhone 5/SE
+    'xxs': $xxs, // IPhone 6/7/8, IPhone X
+    'xs': $xs, // ~ IPhone 6/7/8 Plus,
+    'sm': $sm, // Tablet
+    'md': $md, // Tablet
+    'lg': $lg, // Tablet
+    'xl': $xl, // Laptop
+    'hd': $hd, // Laptop
+    'wxga': $wxga, // Laptop
+    'fhd': $fhd, // >= Desktop
+
+);
+// -------------------------------------
+
+// Pages settings
+$page-content-indent-hd-wxga--left: 40px;
+$page-content-indent-hd-wxga--right: 99px;
+$page-content-indent-lg-hd--left: 70px;
+$page-content-indent-lg-hd--right: 150px;
+$page-content-indent: 40px;
+$page-content-indent--laptop: 28px;
+$page-content-indent--tablet: 48px;
+$page-content-indent--mob: 16px;
+$page-content-indent--min: 12px;
+// -------------------------------------
+
+
+// Layout
+//
+// navbar
+$navbar--height: 64px !default;
+//$navbar--height-mob: 56px !default;
+//$navbar--arrow-dark-color: rgba(255, 255, 255, 0.48);
+//$navbar--arrow-color: rgba($brand-dark-text--color, 0.6);
+//
+// footer
+$footer--height: 92px;
+//
+// sidebar
+//$sidebar--left-width: 240px !default;
+//$sidebar--left-width-xl: 240px !default;
+//$sidebar--left-width-hd: 80px !default;
+//$sidebar--left-width-lg: 375px !default;
+//$sidebar--left-width-xs: 100% !default;
+//$sidebar--right-width: 412px !default;
+// -------------------------------------
+
+// Icon
+$icon-size: 24px;
+$icon-size-16: 16px;
+$icon-size-20: 20px;
+$icon-size-22: 22px;
+$icon-size-32: 32px;
+// -------------------------------------
+
+// Dialog
+$dialog--indent: 24px;
+$dialog--indent--tablet: 32px;
+$dialog--indent--mob: 16px;
+$dialog-title--btn-size: 32px;
+$dialog-title--btn-size--mob: 40px;
+// -------------------------------------
+
+// Form Controls
+//$input--font: $font--16-regular;
+//$input--indent-rl: 12px;
+//$input--border-color: transparent;
+//$input-label--ident-lr: 6px;
+//$input-label--left: $input--indent-rl - $input-label--ident-lr;
+//$input-label--color: $dark-64;
+//$input-label--bg--disabled: rgb(241, 242, 242);
+// -------------------------------------
+
+// Menu
+//$menu--border: 0.5px solid $dark-12;
+//$menu--shadow: $shadow-dropdown;
+//$menu--bg: $light-100;
+//$menu--shape: 8px;
+//$menu--vertical-padding: 8px;
+//$menu-overlay--min-width: 112px;
+//$menu-overlay--max-width: 280px;
+//$menu-item--height: 32px;
+//$menu-icon--indent: 16px;
+//$menu--color: $dark-100;
+//$menu-item--bg: transparent;
+//$menu-disabled--bg: $dark-8;
+//$menu-disabled--color: $dark-48;
+//$menu-item--color--hover: $dark-100;
+//$menu-item--bg--hover: $dark-6;
+//$menu-item--shape: 6px;
+// -------------------------------------

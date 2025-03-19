@@ -1,0 +1,19 @@
+import {IEnvironment} from './IEnvironment';
+import packageJson from '../../package.json';
+
+const version = packageJson.version;
+
+export const environment: IEnvironment = {
+    production: false,
+    isDev: true,
+    version: version,
+    googleApiKey: '',
+    rootUrl: '',
+    debug: true,
+    log: {
+        info: true,
+        debug: true,
+        warn: true,
+        error: true,
+    },
+};

@@ -1,0 +1,8 @@
+// box-sizing: content-box | border-box | padding-box | inherit
+@mixin box-sizing($val...) {
+    -webkit-box-sizing: $val;
+    -moz-box-sizing: $val;
+    -ms-box-sizing: $val;
+    -o-box-sizing: $val;
+    box-sizing: $val;
+}

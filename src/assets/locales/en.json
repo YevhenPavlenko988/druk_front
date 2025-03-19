@@ -1,0 +1,19 @@
+{
+    "layout": {
+        "footer": {
+            "terms": "Terms of Service",
+            "policy": "Privacy Policy"
+        }
+    },
+    "home": {
+        "btn": "Click Me"
+    },
+    "order": {
+        "title": "Place a print order",
+        "steps": {
+            "first": "Adding files",
+            "second": "Payment",
+            "last": "Printing"
+        }
+    }
+}

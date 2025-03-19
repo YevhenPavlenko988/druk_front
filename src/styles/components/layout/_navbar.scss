@@ -1,0 +1,24 @@
+.layout-navbar {
+    --mat-toolbar-container-background-color: #{$white-100};
+    //--mat-toolbar-container-text-color: white;
+
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.navbar__content {
+    display: flex;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.navbar__logo {
+    &.mat-icon {
+        width: 74px;
+        height: 44px;
+        border-radius: 3px;
+    }
+}
