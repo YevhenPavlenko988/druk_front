@@ -9,7 +9,9 @@ import {
 import {Router} from '@angular/router';
 import {SharedModule} from '../shared.module';
 import {ICONS} from '../$core/icons';
+import {OrderLocationComponent} from './components/order-location.component';
 import {ORDER_TITLE_LABEL} from './labels';
+import {environment} from '../../environments/environment';
 
 
 @Component({
@@ -20,7 +22,7 @@ import {ORDER_TITLE_LABEL} from './labels';
     host: {
         'class': 'order-page',
     },
-    imports: [SharedModule],
+    imports: [SharedModule, OrderLocationComponent],
     standalone: true,
 })
 export class OrderComponent implements OnInit, OnDestroy {
@@ -30,6 +32,9 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     constructor(private router: Router,
                 private cd: ChangeDetectorRef) {
+        if (environment.log.debug) {
+            console.log('[OrderComponent] constructor loaded');
+        }
     }
 
     ngOnInit() {

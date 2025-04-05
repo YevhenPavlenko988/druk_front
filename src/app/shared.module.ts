@@ -6,6 +6,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from "@angular/material/menu";
 import {environment} from '../environments/environment';
 import {SVG_ICONS} from './$core/consts';
 
@@ -20,6 +21,7 @@ const modules = [
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
 ];
 
 @NgModule({

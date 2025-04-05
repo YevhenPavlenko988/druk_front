@@ -61,6 +61,11 @@
     }
 }
 
+.order-main {
+    display: flex;
+    margin-top: 24px;
+}
+
 @include media-breakpoint-down(md) {
     .order-header {
         flex-direction: column;

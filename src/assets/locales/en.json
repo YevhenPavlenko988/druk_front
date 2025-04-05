@@ -14,6 +14,12 @@
             "first": "Adding files",
             "second": "Payment",
             "last": "Printing"
+        },
+        "location": {
+            "title": "Location",
+            "availableUntil": "Available until",
+            "availableSheets": "Available for printing:",
+            "sheets": "sheets"
         }
     }
 }

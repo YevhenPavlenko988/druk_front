@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {environment} from '../environments/environment';
@@ -26,6 +27,7 @@ export function initializeLanguage(languageService: LanguageService) {
     imports: [
         BrowserModule,
         HttpClientModule,
+        BrowserAnimationsModule,
         CommonModule,
         LayoutModule,
         TranslateModule.forRoot({
