@@ -13,7 +13,10 @@ $blue-light: #3186CB; // #3186CB
 //
 // gray color
 $gray-dark: #8A8A90; // #8A8A90
-$gray-light: #A4AAB1; // #A4AAB1
+$gray-light: #E8EBF0; // #A4AAB1
+//
+// green color
+$green-100: #3E987F;
 //
 // brand colors
 $brand--color: $blue-main;
@@ -155,18 +158,19 @@ $dialog-title--btn-size--mob: 40px;
 // Menu
 //$menu--border: 0.5px solid $dark-12;
 //$menu--shadow: $shadow-dropdown;
-//$menu--bg: $light-100;
+$menu--bg: $white-100;
 //$menu--shape: 8px;
 //$menu--vertical-padding: 8px;
 //$menu-overlay--min-width: 112px;
 //$menu-overlay--max-width: 280px;
 //$menu-item--height: 32px;
 //$menu-icon--indent: 16px;
+$menu-panel--indent: 8px;
 //$menu--color: $dark-100;
 //$menu-item--bg: transparent;
 //$menu-disabled--bg: $dark-8;
 //$menu-disabled--color: $dark-48;
 //$menu-item--color--hover: $dark-100;
-//$menu-item--bg--hover: $dark-6;
+$menu-item--bg--hover: $brand--bg;
 //$menu-item--shape: 6px;
 // -------------------------------------

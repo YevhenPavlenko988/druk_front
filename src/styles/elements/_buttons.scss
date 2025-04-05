@@ -1,0 +1,19 @@
+.btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-size: $font-size-16;
+    white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
+    overflow: visible;
+    transform: translate3d(0, 0, 0);
+    transition: color 300ms ease, background 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
