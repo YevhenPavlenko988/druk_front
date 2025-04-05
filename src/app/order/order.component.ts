@@ -9,7 +9,7 @@ import {
 import {Router} from '@angular/router';
 import {SharedModule} from '../shared.module';
 import {ICONS} from '../$core/icons';
-import {OrderLocationComponent} from './components/order-location.component';
+import {OrderLocationComponent} from './components/location/order-location.component';
 import {ORDER_TITLE_LABEL} from './labels';
 import {environment} from '../../environments/environment';
 

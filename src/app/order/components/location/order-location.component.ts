@@ -9,17 +9,17 @@ import {
 } from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {take} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {SharedModule} from '../../shared.module';
-import {ICONS} from '../../$core/icons';
-import {PrintersService} from '../services/printers.service';
-import {PrinterDTO} from '../models/PrinterDTO';
+import {environment} from '../../../../environments/environment';
+import {SharedModule} from '../../../shared.module';
+import {ICONS} from '../../../$core/icons';
+import {PrintersService} from '../../services/printers.service';
+import {PrinterDTO} from '../../models/PrinterDTO';
 import {
     ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,
     ORDER_LOCATION_AVAILABLE_UNTIL_LABEL,
     ORDER_LOCATION_SHEETS_LABEL,
     ORDER_LOCATION_TITLE_LABEL,
-} from '../labels';
+} from '../../labels';
 
 
 @Component({
