@@ -115,8 +115,8 @@ button, select {
     text-transform: none;
 }
 
-button {
-    //@include appearance(button);
+input:focus {
+    outline: none;
 }
 
 button::-moz-focus-inner {
@@ -147,9 +147,16 @@ legend {
     padding: 0;
 }
 
+/* Hide spinner in number input for WebKit browsers (Chrome, Safari) */
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {
-    height: auto;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spinner in Firefox */
+[type="number"] {
+    -moz-appearance: textfield;
 }
 
 table {

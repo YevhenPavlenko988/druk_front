@@ -2,7 +2,9 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    font-size: $font-size-16;
+    font-size: $btn--font-size;
+    font-weight: $btn--font-weight;
+    justify-content: center;
     white-space: nowrap;
     text-decoration: none;
     text-align: center;
@@ -16,4 +18,98 @@
     cursor: pointer;
     outline: none;
     border: none;
+
+    &:focus {
+        outline-style: none; // fix for safari
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    .mat-icon {
+        height: $icon-size;
+        width: $icon-size;
+        min-width: $icon-size;
+        vertical-align: middle;
+        transition: transform 300ms ease, color 300ms ease;
+    }
+
+    .mat-icon ~ span {
+        margin-left: 8px;
+    }
+}
+
+// btn size
+.btn--44 {
+    height: $btn--height;
+    min-height: $btn--height;
+    min-width: $btn--width;
+}
+
+.btn--f1 {
+    flex: 1;
+}
+
+//
+.btn-icon {
+    height: $btn--height;
+    min-height: $btn--height;
+    min-width: $btn--icon-width;
+
+    &:disabled {
+        .mat-icon {
+            color: $gray-dark;
+        }
+    }
+}
+
+// btn background
+.btn-blue {
+    --mdc-circular-progress-active-indicator-color: #{$white-100};
+
+    background: $blue-main;
+    color: $white-100;
+    border-radius: $btn--border-radius;
+
+    &:hover {
+        background: $blue-light;
+    }
+
+    &.disabled, &[disabled] {
+        background: $blue-main-40;
+    }
+}
+
+.btn-gray {
+    background: transparent;
+    color: $gray-dark;
+    border-radius: $btn--border-radius;
+
+    &:hover {
+        color: $blue-light;
+    }
+
+    &.disabled, &[disabled] {
+        color: $gray-dark-40;
+    }
+}
+
+.btn-transparent {
+    --mdc-circular-progress-active-indicator-color: #{$blue-main-40};
+
+    background: transparent;
+    color: $blue-main;
+    border: $border-width $border-style $blue-main;
+    border-radius: $btn--border-radius;
+
+    &:hover {
+        color: $blue-light;
+        border-color: $blue-light;
+    }
+
+    &.disabled, &[disabled] {
+        color: $blue-main-40;
+        border-color: $blue-main-40;
+    }
 }

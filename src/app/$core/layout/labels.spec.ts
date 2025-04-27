@@ -5,7 +5,7 @@ import {getTranslateModule} from '../../../testing/mockTranslateModule';
 import {FOOTER_POLICY_LABEL, FOOTER_TERMS_LABEL} from './labels';
 
 
-describe('order#translates', () => {
+describe('layout#translates', () => {
     let translateService: TranslateService;
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({

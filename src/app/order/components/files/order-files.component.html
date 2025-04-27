@@ -1,0 +1,80 @@
+<h2>{{orderFilesTitleLabel | translate}}</h2>
+<ng-container *ngIf="!fileList?.length; else filesTmpl">
+    <div class="files-add">
+        <div class="files-add-content">
+            <div class="files-add__icon">
+                <img src="assets/images/file-add.png?v={{env.version}}" alt="file">
+            </div>
+            <div class="files-add__text">
+                <h5>{{addDirectionLabel | translate}}</h5>
+                <p>{{addFormatLabel | translate}}</p>
+            </div>
+            <div class="files-add__btn">
+                <ng-container *ngTemplateOutlet="addButtonTmpl"></ng-container>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #filesTmpl>
+    <div class="files">
+        <div *ngFor="let file of fileList; let i = index" class="files-item">
+            <div class="files-item-info">
+                <div class="files-item__icon">
+                    <mat-icon [svgIcon]="ICONS.document"></mat-icon>
+                </div>
+                <div class="files-item__content">
+                    <h5>{{file.$name}}</h5>
+                    <span>{{pagesLabel | translate}} {{file.pagesCount}}</span>
+                </div>
+                <div class="files-item__delete">
+                    <button class="btn" (click)="onDeleteFile(file.s3key)">
+                        <mat-icon [svgIcon]="ICONS.cross"></mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="files-item-settings">
+                <form *ngIf="settingsFormArray" id="formSettings" autocomplete="off" novalidate
+                      [formGroup]="settingsFormArray.at(i)"
+                      class="files-item-form">
+                    <mat-slide-toggle [formControlName]="printTypeField" [id]="printTypeField + i" hideIcon="true"
+                                      (change)="changePrintType(file.id)">
+                        {{sidesLabel | translate}}
+                    </mat-slide-toggle>
+                    <div class="files-item-count">
+                        <button type="button" class="btn btn-icon files-item-count__btn"
+                                [disabled]="file.$copiesCount === minCopiesCount"
+                                (click)="decreaseCopies(file.id)">
+                            <mat-icon [svgIcon]="ICONS.minus"></mat-icon>
+                        </button>
+                        <input matInput type="number" readonly
+                               [formControlName]="copiesCountField" [id]="copiesCountField + i">
+                        <button type="button" class="btn btn-icon files-item-count__btn"
+                                [disabled]="file.$copiesCount === maxCopiesCount"
+                                (click)="increaseCopies(file.id)">
+                            <mat-icon [svgIcon]="ICONS.plus"></mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <ng-container *ngTemplateOutlet="addButtonTmpl"></ng-container>
+    </div>
+</ng-template>
+
+<ng-template #addButtonTmpl>
+    <button id="btnAddFile" type="button"
+            class="btn btn--44 btn-transparent"
+            (click)="fileInput.click()"
+            [disabled]="isDisabled">
+        <ng-container *ngIf="!submitted">
+            <mat-icon [svgIcon]="ICONS.clip"></mat-icon>
+            <span>{{btnAddFileLabel | translate}}</span>
+        </ng-container>
+        <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+        <input #fileInput type="file"
+               hidden
+               (change)="onAddFile(fileInput)"
+               accept="application/pdf">
+    </button>
+</ng-template>

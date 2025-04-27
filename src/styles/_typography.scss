@@ -16,9 +16,15 @@ h3 {
 }
 
 h4 {
+    //font-size: $font-size-20;
+    //font-weight: $font--bold;
+    //line-height: $font--20-line-height;
 }
 
 h5 {
+    font-size: $font-size-16;
+    font-weight: $font--bold;
+    line-height: $font--16-line-height;
 }
 
 @include media-breakpoint-down(hd) {

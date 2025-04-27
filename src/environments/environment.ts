@@ -9,6 +9,7 @@ export const environment: IEnvironment = {
     version: version,
     googleApiKey: '',
     rootUrl: '',
+    apiUrl: 'https://druk2go.com/druk2go',
     debug: true,
     log: {
         info: true,

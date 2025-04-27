@@ -7,12 +7,12 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import {Router} from '@angular/router';
-import {SharedModule} from '../shared.module';
-import {ICONS} from '../$core/icons';
-import {OrderLocationComponent} from './components/order-location.component';
-import {ORDER_TITLE_LABEL} from './labels';
 import {environment} from '../../environments/environment';
-
+import {SharedModule} from '../shared.module';
+import {OrderLocationComponent} from './components/location/order-location.component';
+import {OrderFilesComponent} from './components/files/order-files.component';
+import {ORDER_TITLE_LABEL} from './labels';
+import {ICONS} from '../$core/icons';
 
 @Component({
     selector: 'order-page',
@@ -22,12 +22,12 @@ import {environment} from '../../environments/environment';
     host: {
         'class': 'order-page',
     },
-    imports: [SharedModule, OrderLocationComponent],
+    imports: [SharedModule, OrderLocationComponent, OrderFilesComponent],
     standalone: true,
 })
 export class OrderComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
-    //
+    // labels
     readonly orderTitleLabel = ORDER_TITLE_LABEL;
 
     constructor(private router: Router,
