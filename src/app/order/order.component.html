@@ -17,5 +17,10 @@
 </div>
 <div class="order-main">
     <order-location></order-location>
-    <order-files></order-files>
+    <order-files [loading]="loading"
+                 [files]="fileList"
+                 [settingsFormArray]="settingsFormArray"
+                 (fileUploaded)="onFileUploaded($event)"
+                 (fileDeleted)="onFileDeleted($event)"
+                 (fileChanged)="onFileChanged($event)"></order-files>
 </div>

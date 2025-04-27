@@ -10,7 +10,8 @@
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "all": "npm run lint && npm run test && npm run build"
     },
     "dependencies": {
         "@angular/animations": "^17.0.0",

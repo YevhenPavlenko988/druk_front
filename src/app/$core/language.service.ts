@@ -10,7 +10,7 @@ export class LanguageService {
         this.initializeLanguage();
     }
 
-    public initializeLanguage(): void {
+    initializeLanguage(): void {
         const savedLang = localStorage.getItem(STORAGE_LANG_NAME) || this.defaultLang;
         this.translate.setDefaultLang(this.defaultLang);
         this.translate.use(savedLang);
