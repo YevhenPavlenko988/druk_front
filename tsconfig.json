@@ -22,8 +22,11 @@
         "useDefineForClassFields": false,
         "lib": [
             "ES2022",
+            "ES2020",
+            "ES2018",
             "dom"
-        ]
+        ],
+        "skipLibCheck": true
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

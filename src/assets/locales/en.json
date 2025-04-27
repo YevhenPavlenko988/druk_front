@@ -20,6 +20,23 @@
             "availableUntil": "Available until",
             "availableSheets": "Available for printing:",
             "sheets": "sheets"
+        },
+        "files": {
+            "title": "Files",
+            "btnAdd": "Add files",
+            "direction": {
+                "title": "Add or drag & drop files to print",
+                "format": "Supporting formats: pdf",
+                "size": "Size: up to 50Mb"
+            },
+            "pages": "Pages:",
+            "sides": "Double-sided printing",
+            "delete": {
+                "title": "Delete file",
+                "content": "Are you sure you want to delete the file?",
+                "btnDelete": "Delete",
+                "btnCancel": "Cancel"
+            }
         }
     }
 }

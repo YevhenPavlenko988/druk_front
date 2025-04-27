@@ -1,6 +1,7 @@
 export interface IEnvironment {
     production: boolean,
     rootUrl: string,
+    apiUrl: string,
     version: string,
     isDev?: boolean,
     debug?: boolean,

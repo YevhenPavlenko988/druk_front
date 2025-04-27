@@ -1,0 +1,18 @@
+<div mat-dialog-title>
+    <span>{{dialogTitleLabel | translate}}</span>
+</div>
+<mat-dialog-content>
+    <div>{{dialogContentLabel | translate}}</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="actions-wrapper">
+        <button id="btnDelete" type="button"
+                class="btn btn--44 btn-blue"
+                (click)="deleteFile(dialogData?.s3key)">
+            <span *ngIf="!submitted">{{btnDeleteLabel | translate}}</span>
+            <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+        </button>
+        <button mat-dialog-close id="btnCancel"
+                class="btn btn--44 btn-gray">{{btnCancelLabel | translate}}</button>
+    </div>
+</mat-dialog-actions>

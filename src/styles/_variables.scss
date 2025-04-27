@@ -7,12 +7,13 @@ $white-100: rgb(255, 255, 255); // #FFFFFF;
 $black-100: rgb(23, 27, 33); // #1B1B1E
 //
 // blue color
-$blue-main: #1265A8; // #1265A8
-$blue-main-40: #1265A840; // #1265A8
+$blue-main: rgb(18, 101, 168); // #1265A8
+$blue-main-40: rgba(18, 101, 168, 0.4);
 $blue-light: #3186CB; // #3186CB
 //
 // gray color
-$gray-dark: #8A8A90; // #8A8A90
+$gray-dark: rgb(138, 138, 144); // #8A8A90
+$gray-dark-40: rgb(138, 138, 144, 0.4);
 $gray-light: #E8EBF0; // #A4AAB1
 //
 // green color
@@ -21,6 +22,7 @@ $green-100: #3E987F;
 // brand colors
 $brand--color: $blue-main;
 $brand--bg: rgb(238, 242, 248); // #EEF2F8
+$brand--bg-40: rgb(238, 242, 248, 0.4); // #EEF2F8
 // -------------------------------------
 
 // Fonts
@@ -57,9 +59,8 @@ $font--10-line-height: 16px;
 // -------------------------------------
 
 // Borders
-//$border-width: 0.8px;
-//$border-style: solid;
-//$border-color: $dark-12;
+$border-width: 1px;
+$border-style: solid;
 // -------------------------------------
 
 // Shadow
@@ -173,4 +174,13 @@ $menu-panel--indent: 8px;
 //$menu-item--color--hover: $dark-100;
 $menu-item--bg--hover: $brand--bg;
 //$menu-item--shape: 6px;
+// -------------------------------------
+
+// Buttons
+$btn--font-size: $font-size-16;
+$btn--font-weight: $font--light;
+$btn--height: 44px;
+$btn--width: 320px;
+$btn--icon-width: 44px;
+$btn--border-radius: 4px;
 // -------------------------------------

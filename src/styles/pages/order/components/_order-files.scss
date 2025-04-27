@@ -1,0 +1,147 @@
+.order-files {
+    flex: 1;
+}
+
+.files-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $white-100;
+    border-radius: 6px;
+    margin-top: 12px;
+    padding: 16px 0 36px;
+}
+
+.files-add-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    width: 320px;
+    max-width: 320px;
+}
+
+.files-add__icon img {
+    height: 158px;
+    width: 180px;
+    min-width: 180px;
+}
+
+.files-add__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: $gray-dark;
+    font-weight: $font--light;
+
+    h5 {
+        color: $black-100;
+    }
+}
+
+.files {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 12px;
+}
+
+.files-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: $white-100;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+.files-item-info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        bottom: 0;
+        background-color: $gray-light;
+        z-index: 1;
+    }
+}
+
+.files-item__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 4px;
+    background: $brand--bg;
+    color: $black-100;
+}
+
+.files-item__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: $gray-dark;
+    font-weight: $font--light;
+
+    h5 {
+        color: $black-100;
+    }
+}
+
+.files-item__delete {
+    .mat-icon {
+        color: $gray-dark;
+    }
+
+    &:hover .mat-icon {
+        color: $blue-main;
+    }
+}
+
+.files-item-settings {
+    display: flex;
+
+    .mdc-label {
+        font-size: $font-size-16;
+        //font-weight: $font--light;
+    }
+}
+
+.files-item-form {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    padding-top: 16px;
+}
+
+.files-item-count {
+    display: flex;
+    align-items: center;
+    border: $border-width $border-style $brand--bg;
+
+    input {
+        border: none;
+        text-align: center;
+        width: 92px;
+        font-size: $font-size-16;
+        font-weight: $font--bold;
+    }
+}
+
+.files-item-count__btn {
+    background: $brand--bg-40;
+}

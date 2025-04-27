@@ -1,0 +1,20 @@
+@import "variables";
+
+//
+// slide-toggle
+:root {
+    --mdc-switch-track-height: 24px;
+    --mdc-switch-track-width: 44px;
+    --mdc-switch-track-shape: 14px;
+
+    --mat-switch-unselected-handle-size: 18px;
+    --mat-switch-selected-handle-size: 18px;
+
+    --mat-switch-unselected-handle-horizontal-margin: 0 3px;
+}
+
+//
+// spinner
+:root {
+    //--mdc-circular-progress-active-indicator-color: #{$blue-main-40};
+}

@@ -1,0 +1,33 @@
+.mdc-switch {
+    .mdc-switch__track {
+        --mdc-switch-unselected-track-color: #{$brand--bg};
+        --mdc-switch-unselected-hover-track-color: #{$brand--bg};
+        --mdc-switch-unselected-focus-track-color: #{$brand--bg};
+        --mdc-switch-unselected-pressed-track-color: #{$brand--bg};
+
+        --mdc-switch-selected-track-color: #{$blue-main};
+        --mdc-switch-selected-focus-track-color: #{$blue-main};
+        --mdc-switch-selected-hover-track-color: #{$blue-main};
+        --mdc-switch-selected-pressed-track-color: #{$blue-main};
+    }
+
+    .mdc-switch__handle {
+        --mdc-switch-unselected-handle-color: #{$gray-dark};
+        --mdc-switch-unselected-focus-handle-color: #{$gray-dark};
+        --mdc-switch-unselected-hover-handle-color: #{$gray-dark};
+        --mdc-switch-unselected-pressed-handle-color: #{$gray-dark};
+
+        --mdc-switch-selected-handle-color: #{$white-100};
+        --mdc-switch-selected-focus-handle-color: #{$white-100};
+        --mdc-switch-selected-hover-handle-color: #{$white-100};
+        --mdc-switch-selected-pressed-handle-color: #{$white-100};
+
+        .mdc-switch__ripple,
+        .mdc-switch__shadow {
+            display: none;
+        }
+    }
+}
+
+
+
