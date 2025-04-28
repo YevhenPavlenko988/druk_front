@@ -1,0 +1,28 @@
+<h2>{{summaryTitleLabel | translate}}</h2>
+<div class="summary">
+    <div class="summary-details">
+        <div class="summary-details__item">
+            <div class="label">{{blackLabel | translate}}</div>
+            <div>!! x 50.00 ₴</div>
+        </div>
+        <div class="summary-details__item">
+            <div class="label">{{commissionLabel | translate}}</div>
+            <div>111150.00 ₴</div>
+        </div>
+    </div>
+    <div class="summary-total">
+        <div class="label">{{totalLabel | translate}}</div>
+        <div>2222560.00 ₴</div>
+    </div>
+</div>
+
+<button id="btnCreateOrder" type="button"
+        class="btn btn--44 btn-blue"
+        (click)="onCreateOrder()"
+        [disabled]="isDisabled">
+    <ng-container *ngIf="!loading">
+        <mat-icon [svgIcon]="ICONS.payment"></mat-icon>
+        <span>{{btnCreateOrderLabel | translate}}</span>
+    </ng-container>
+    <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+</button>

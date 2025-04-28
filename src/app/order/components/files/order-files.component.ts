@@ -1,17 +1,16 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
-    DestroyRef,
+    EventEmitter,
+    Input,
     OnDestroy,
     OnInit,
+    Output,
     ViewEncapsulation,
 } from '@angular/core';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {MatDialog} from '@angular/material/dialog';
-import {take} from 'rxjs';
-import {mapFile} from '../../transform/mapFile';
+import {FormArray, FormGroup} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {COPIES_COUNT, FORM_ID, MAX_COPIES_COUNT, MIN_COPIES_COUNT, PRINT_TYPE} from '../../consts';
 import {
@@ -22,9 +21,6 @@ import {
     ORDER_FILES_TITLE_LABEL,
 } from '../../labels';
 import {SharedModule} from '../../../shared.module';
-import {FilesService} from '../../services/files.service';
-import {DeleteFileDialogComponent} from '../../dialogs/delete-file-dialog/delete-file-dialog.component';
-import {DeleteFileDialogOptions, DeleteFileDialogResult} from '../../dialogs/typing';
 import {FileView} from '../../models/FileView';
 import {ICONS} from '../../../$core/icons';
 import {PrintTypeEnum} from '../../models/PrintTypeEnum';
@@ -44,7 +40,7 @@ import {PrintTypeEnum} from '../../models/PrintTypeEnum';
 export class OrderFilesComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
     //
-    readonly orderFilesTitleLabel = ORDER_FILES_TITLE_LABEL;
+    readonly filesTitleLabel = ORDER_FILES_TITLE_LABEL;
     readonly btnAddFileLabel = ORDER_FILES_BTN_ADD_LABEL;
     readonly pagesLabel = ORDER_FILES_PAGES_LABEL;
     readonly sidesLabel = ORDER_FILES_SIDES_LABEL;
@@ -53,24 +49,24 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
     //
     readonly printTypeField = PRINT_TYPE;
     readonly copiesCountField = COPIES_COUNT;
-    settingsFormArray: FormArray<FormGroup> = new FormArray([]);
 
     readonly minCopiesCount = MIN_COPIES_COUNT;
     readonly maxCopiesCount = MAX_COPIES_COUNT;
     readonly env = environment;
 
-    loading: boolean;
-    submitted: boolean;
-    fileList: Array<FileView>;
+    @Input({transform: booleanAttribute}) loading: boolean;
+    // submitted: boolean;
+    @Input() files: Array<FileView>;
+    @Input() settingsFormArray: FormArray<FormGroup>;
+    @Output() fileUploaded = new EventEmitter<File>();
+    @Output() fileDeleted = new EventEmitter<string>();
+    @Output() fileChanged = new EventEmitter<FileView>();
 
     get isDisabled(): boolean {
         return this.loading;
     }
 
-    constructor(private destroyRef: DestroyRef,
-                private cd: ChangeDetectorRef,
-                private dialog: MatDialog,
-                private filesService: FilesService) {
+    constructor(private cd: ChangeDetectorRef,) {
         if (environment.log.debug) {
             console.log('[OrderFilesComponent] constructor loaded');
         }
@@ -82,49 +78,13 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
     }
 
-    createSettingsForm(file: FileView) {
-        const form = new FormGroup({
-            [FORM_ID]: new FormControl(file.id),
-            [PRINT_TYPE]: new FormControl(false),
-            [COPIES_COUNT]: new FormControl(file.$copiesCount),
-        });
-        this.settingsFormArray.push(form);
-    }
-
     onAddFile(input: HTMLInputElement) {
         if (!input?.files?.length) {
+            // todo show some notify
             return;
         }
-        this.loading = true;
-        this.submitted = true;
-        this.cd.markForCheck();
-        const done = () => {
-            this.loading = false;
-            this.submitted = false;
-            this.cd.markForCheck();
-        };
         const file = input.files[0];
-        const formData = new FormData();
-        formData.append('file', file);
-
-        this.filesService.uploadFile(formData).pipe(
-            take(1),
-            takeUntilDestroyed(this.destroyRef),
-        ).subscribe({
-            next: (r) => {
-                const fileToView = mapFile(r);
-                this.createSettingsForm(fileToView);
-                this.fileList = [...(this.fileList || []), fileToView];
-                done();
-            },
-            error: (err) => {
-                if (environment.log.error) {
-                    console.error(err);
-                }
-                // todo show some notify
-                done();
-            },
-        });
+        this.fileUploaded.emit(file);
     }
 
     onDeleteFile(key: string) {
@@ -132,28 +92,18 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
             // todo show some notify
             return;
         }
-        const dialogRef = this.dialog.open<
-            DeleteFileDialogComponent,
-            DeleteFileDialogOptions,
-            DeleteFileDialogResult
-        >(DeleteFileDialogComponent, {data: {s3key: key}});
-        dialogRef.afterClosed().subscribe(result => {
-            if (!result) {
-                return;
-            }
-            this.fileList = this.fileList.filter(x => x.s3key !== result.s3key);
-            this.cd.markForCheck();
-        });
+        this.fileDeleted.emit(key);
     }
 
     changePrintType(id: string) {
         const currentForm = this.findCurrentForm(id);
-        const file = this.fileList.find(f => f.id === id);
+        const file = this.files.find(f => f.id === id);
         if (!currentForm || !file) {
             return;
         }
         const isDouble = currentForm.get(PRINT_TYPE)?.value;
         file.$printType = isDouble ? PrintTypeEnum.DUPLEX : PrintTypeEnum.ONE_SIDED;
+        this.fileChanged.emit(file);
         this.cd.markForCheck();
     }
 
@@ -164,24 +114,26 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
         // this.settingsForm.get(COPIES_COUNT).setValue(currentValue - 1);
         const currentForm = this.findCurrentForm(id);
         const currentControl = currentForm.get(COPIES_COUNT);
-        const file = this.fileList.find(f => f.id === id);
+        const file = this.files.find(f => f.id === id);
         if (!file || !currentControl || currentControl.value === MIN_COPIES_COUNT) {
             return;
         }
         currentControl.setValue(currentControl.value - 1);
         file.$copiesCount = currentControl.value;
+        this.fileChanged.emit(file);
         this.cd.markForCheck();
     }
 
     increaseCopies(id: string) {
         const currentForm = this.findCurrentForm(id);
         const currentControl = currentForm.get(COPIES_COUNT);
-        const file = this.fileList.find(f => f.id === id);
+        const file = this.files.find(f => f.id === id);
         if (!file || !currentControl || currentControl.value === MAX_COPIES_COUNT) {
             return;
         }
         currentControl.setValue(currentControl.value + 1);
         file.$copiesCount = currentControl.value;
+        this.fileChanged.emit(file);
         this.cd.markForCheck();
     }
 

@@ -6,11 +6,12 @@
     "author": "Nadiia Salabutina <nadiya.tita@gmail.com>",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
+        "start": "ng serve --host 0.0.0.0 --port 4200",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "all": "npm run lint && npm run test && npm run build"
     },
     "dependencies": {
         "@angular/animations": "^17.0.0",

@@ -1,5 +1,5 @@
-<h2>{{orderFilesTitleLabel | translate}}</h2>
-<ng-container *ngIf="!fileList?.length; else filesTmpl">
+<h2>{{filesTitleLabel | translate}}</h2>
+<ng-container *ngIf="!files?.length; else filesTmpl">
     <div class="files-add">
         <div class="files-add-content">
             <div class="files-add__icon">
@@ -18,7 +18,7 @@
 
 <ng-template #filesTmpl>
     <div class="files">
-        <div *ngFor="let file of fileList; let i = index" class="files-item">
+        <div *ngFor="let file of files; let i = index" class="files-item">
             <div class="files-item-info">
                 <div class="files-item__icon">
                     <mat-icon [svgIcon]="ICONS.document"></mat-icon>
@@ -67,11 +67,11 @@
             class="btn btn--44 btn-transparent"
             (click)="fileInput.click()"
             [disabled]="isDisabled">
-        <ng-container *ngIf="!submitted">
+        <ng-container *ngIf="!loading">
             <mat-icon [svgIcon]="ICONS.clip"></mat-icon>
             <span>{{btnAddFileLabel | translate}}</span>
         </ng-container>
-        <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+        <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
         <input #fileInput type="file"
                hidden
                (change)="onAddFile(fileInput)"
