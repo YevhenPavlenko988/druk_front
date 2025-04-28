@@ -24,3 +24,11 @@ export const ORDER_FILES_DELETE_DIALOG_CONTENT_LABEL = 'order.files.delete.conte
 export const ORDER_FILES_DELETE_SAVE_BTN_LABEL = 'order.files.delete.btnDelete';
 export const ORDER_FILES_DELETE_CANCEL_BTN_LABEL = 'order.files.delete.btnCancel';
 
+
+//
+// summary
+export const ORDER_SUMMARY_TITLE_LABEL = 'order.summary.title';
+export const ORDER_SUMMARY_BLACK_LABEL = 'order.summary.black';
+export const ORDER_SUMMARY_COMMISSION_LABEL = 'order.summary.commission';
+export const ORDER_SUMMARY_TOTAL_LABEL = 'order.summary.total';
+export const ORDER_SUMMARY_CREATE_BTN_LABEL = 'order.summary.btnCreate';

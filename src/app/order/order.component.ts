@@ -17,6 +17,7 @@ import {environment} from '../../environments/environment';
 import {SharedModule} from '../shared.module';
 import {OrderLocationComponent} from './components/location/order-location.component';
 import {OrderFilesComponent} from './components/files/order-files.component';
+import {OrderSummaryComponent} from './components/summary/order-summary.component';
 import {DeleteFileDialogComponent} from './dialogs/delete-file-dialog/delete-file-dialog.component';
 import {ORDER_TITLE_LABEL} from './labels';
 import {COPIES_COUNT, FORM_ID, PRINT_TYPE} from './consts';
@@ -34,7 +35,7 @@ import {ICONS} from '../$core/icons';
     host: {
         'class': 'order-page',
     },
-    imports: [SharedModule, OrderLocationComponent, OrderFilesComponent],
+    imports: [SharedModule, OrderLocationComponent, OrderFilesComponent, OrderSummaryComponent],
     standalone: true,
 })
 export class OrderComponent implements OnInit, OnDestroy {
@@ -119,6 +120,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     onFileChanged(file: FileView) {
         // console.log(file);
-        console.log(this.fileList);
+        // console.log(this.fileList);
     }
 }

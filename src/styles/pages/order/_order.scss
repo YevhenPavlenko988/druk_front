@@ -67,6 +67,14 @@
     margin-top: 24px;
 }
 
+.order-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 32px;
+    margin-bottom: 56px;
+}
+
 @include media-breakpoint-down(md) {
     .order-header {
         flex-direction: column;

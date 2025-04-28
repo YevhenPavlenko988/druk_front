@@ -8,5 +8,6 @@ export enum ICONS {
     location = 'location',
     logo = 'logo',
     minus = 'minus',
+    payment = 'payment',
     plus = 'plus'
 }

@@ -40,7 +40,7 @@ import {PrintTypeEnum} from '../../models/PrintTypeEnum';
 export class OrderFilesComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
     //
-    readonly orderFilesTitleLabel = ORDER_FILES_TITLE_LABEL;
+    readonly filesTitleLabel = ORDER_FILES_TITLE_LABEL;
     readonly btnAddFileLabel = ORDER_FILES_BTN_ADD_LABEL;
     readonly pagesLabel = ORDER_FILES_PAGES_LABEL;
     readonly sidesLabel = ORDER_FILES_SIDES_LABEL;
