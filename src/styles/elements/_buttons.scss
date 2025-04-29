@@ -113,3 +113,9 @@
         border-color: $blue-main-40;
     }
 }
+
+@include media-breakpoint-down(hd) {
+    .btn--44 {
+        min-width: $btn--width-min;
+    }
+}

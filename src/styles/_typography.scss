@@ -61,13 +61,15 @@ h5 {
     }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(xs) {
     h1 {
-        font-size: 28px;
+        font-size: $font-size-28;
+        line-height: $font--28-line-height;
     }
 
     h2 {
-        font-size: 20px;
+        font-size: $font-size-20;
+        line-height: $font--20-line-height;
     }
 
     h3 {

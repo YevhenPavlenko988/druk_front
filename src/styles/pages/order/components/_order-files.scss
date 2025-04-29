@@ -1,14 +1,18 @@
 .order-files {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
 }
 
 .files-add {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     background: $white-100;
     border-radius: 6px;
-    margin-top: 12px;
     padding: 16px 0 36px;
 }
 
@@ -46,7 +50,7 @@
     gap: 12px;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 12px;
+    width: 100%;
 }
 
 .files-item {
@@ -126,10 +130,12 @@
     display: flex;
     justify-content: space-between;
     flex: 1;
+    gap: 16px;
 }
 
 .files-item-count {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border: $border-width $border-style $brand--bg;
 
@@ -144,4 +150,20 @@
 
 .files-item-count__btn {
     background: $brand--bg-40;
+}
+
+@include media-breakpoint-down(hd) {
+    .order-files, .files {
+        align-items: center;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .order-files .btn-transparent {
+        width: 100%;
+    }
+
+    .files-item-form {
+        flex-direction: column;
+    }
 }

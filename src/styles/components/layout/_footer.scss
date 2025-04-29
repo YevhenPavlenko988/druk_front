@@ -10,6 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
     width: 100%;
     max-width: 1272px; // max-width: 1240px; + padding: 0 16px;
     font-weight: $font--light;
