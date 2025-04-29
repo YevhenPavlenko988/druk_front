@@ -17,7 +17,7 @@
         },
         "location": {
             "title": "Location",
-            "availableUntil": "Available until",
+            "available": "Available",
             "availableSheets": "Available for printing:",
             "sheets": "sheets"
         },

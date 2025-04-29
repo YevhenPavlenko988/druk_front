@@ -1,4 +1,4 @@
-<h2>{{orderLocationTitleLabel | translate}}</h2>
+<h2>{{locationTitleLabel | translate}}</h2>
 <div class="location">
     <div class="location-btn">
         <button id="btnLocation" type="button" [matMenuTriggerFor]="locationMenu" class="btn">
@@ -24,13 +24,15 @@
         </button>
     </div>
     <div class="location-info">
-        <div class="location-info__item schedule">
-            <mat-icon [svgIcon]="ICONS.clock"></mat-icon>
-            {{availableUntilLabel | translate}} 22:00
-        </div>
-        <div class="location-info__item details">
-            <mat-icon [svgIcon]="ICONS.inbox"></mat-icon>
-            {{availableSheetsLabel | translate}} {{currentPrinter?.paperLeft}} {{sheetsLabel | translate}}
-        </div>
+        <ng-container *ngIf="currentPrinter">
+            <div class="location-info__item">
+                <mat-icon [svgIcon]="ICONS.clock"></mat-icon>
+                {{availableLabel | translate}} {{currentPrinter?.schedule}}
+            </div>
+            <div class="location-info__item {{currentPrinter?.$sheetsClass}}">
+                <mat-icon [svgIcon]="ICONS.inbox"></mat-icon>
+                {{availableSheetsLabel | translate}} {{currentPrinter?.paperLeft}} {{sheetsLabel | translate}}
+            </div>
+        </ng-container>
     </div>
 </div>
