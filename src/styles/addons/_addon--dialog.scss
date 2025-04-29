@@ -1,3 +1,8 @@
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+    --mat-dialog-container-small-max-width: 90vh;
+    max-width: var(--mat-dialog-container-small-max-width, 90vw);
+}
+
 .mat-mdc-dialog-container {
     .mdc-dialog__title {
         --mdc-dialog-subhead-color: #{$black-100};
@@ -10,11 +15,11 @@
         text-align: center;
     }
 
-    mat-mdc-dialog-title + .mat-mdc-dialog-content {
+    .mat-mdc-dialog-title + .mat-mdc-dialog-content {
         margin-top: 8px;
     }
 
-    mdc-dialog__content {
+    .mdc-dialog__content {
         --mdc-dialog-supporting-text-color: #{$black-100};
 
         text-align: center;

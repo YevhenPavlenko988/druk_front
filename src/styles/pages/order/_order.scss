@@ -20,7 +20,7 @@
     flex-direction: column;
     gap: 6px;
     //width: 100%;
-    color: $gray-light;
+    color: $gray;
 
     &:not(:last-of-type) {
         width: 100%;
@@ -75,8 +75,23 @@
     margin-bottom: 56px;
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(hd) {
     .order-header {
         flex-direction: column;
+        gap: 16px;
+    }
+
+    .order-steps {
+        width: 100%;
+    }
+
+    .order-main {
+        flex-direction: column;
+    }
+}
+
+@include media-breakpoint-down(xxs) {
+    .order-steps__item:not(:last-of-type) {
+        min-width: 120px;
     }
 }

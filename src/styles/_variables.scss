@@ -12,9 +12,10 @@ $blue-main-40: rgba(18, 101, 168, 0.4);
 $blue-light: #3186CB; // #3186CB
 //
 // gray color
+$gray: rgb(164, 170, 177); // #A4AAB1
 $gray-dark: rgb(138, 138, 144); // #8A8A90
 $gray-dark-40: rgb(138, 138, 144, 0.4);
-$gray-light: #E8EBF0; // #A4AAB1
+$gray-light: #E8EBF0; // #E8EBF0
 //
 // green color
 $green-100: #3E987F;
@@ -181,6 +182,7 @@ $btn--font-size: $font-size-16;
 $btn--font-weight: $font--light;
 $btn--height: 44px;
 $btn--width: 320px;
+$btn--width-min: 220px;
 $btn--icon-width: 44px;
 $btn--border-radius: 4px;
 // -------------------------------------
