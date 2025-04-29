@@ -21,7 +21,7 @@ import {OrderSummaryComponent} from './components/summary/order-summary.componen
 import {DeleteFileDialogComponent} from './dialogs/delete-file-dialog/delete-file-dialog.component';
 import {ORDER_TITLE_LABEL} from './labels';
 import {COPIES_COUNT, FORM_ID, PRINT_TYPE} from './consts';
-import {FileView} from './models/FileView';
+import {FileDTOView} from './models/FileDTOView';
 import {FilesService} from './services/files.service';
 import {DeleteFileDialogOptions, DeleteFileDialogResult} from './dialogs/typing';
 import {ICONS} from '../$core/icons';
@@ -45,7 +45,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     loading: boolean;
     // submitted: boolean;
-    fileList: Array<FileView>;
+    fileList: Array<FileDTOView>;
     settingsFormArray: FormArray<FormGroup> = new FormArray([]);
 
     constructor(private router: Router,
@@ -64,7 +64,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
     }
 
-    createSettingsForm(file: FileView) {
+    createSettingsForm(file: FileDTOView) {
         const form = new FormGroup({
             [FORM_ID]: new FormControl(file.id),
             [PRINT_TYPE]: new FormControl(false),
@@ -118,7 +118,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         });
     }
 
-    onFileChanged(file: FileView) {
+    onFileChanged(file: FileDTOView) {
         // console.log(file);
         // console.log(this.fileList);
     }

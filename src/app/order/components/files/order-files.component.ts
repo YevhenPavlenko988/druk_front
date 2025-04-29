@@ -21,7 +21,7 @@ import {
     ORDER_FILES_TITLE_LABEL,
 } from '../../labels';
 import {SharedModule} from '../../../shared.module';
-import {FileView} from '../../models/FileView';
+import {FileDTOView} from '../../models/FileDTOView';
 import {ICONS} from '../../../$core/icons';
 import {PrintTypeEnum} from '../../models/PrintTypeEnum';
 
@@ -56,11 +56,11 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
 
     @Input({transform: booleanAttribute}) loading: boolean;
     // submitted: boolean;
-    @Input() files: Array<FileView>;
+    @Input() files: Array<FileDTOView>;
     @Input() settingsFormArray: FormArray<FormGroup>;
     @Output() fileUploaded = new EventEmitter<File>();
     @Output() fileDeleted = new EventEmitter<string>();
-    @Output() fileChanged = new EventEmitter<FileView>();
+    @Output() fileChanged = new EventEmitter<FileDTOView>();
 
     get isDisabled(): boolean {
         return this.loading;

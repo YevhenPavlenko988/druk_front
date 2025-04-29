@@ -100,11 +100,12 @@
     gap: 8px;
     font-weight: $font--light;
 
-    &.schedule {
+    &.available {
         color: $green-100;
     }
 
-    &.details {
+    &.not-available {
+        color: $red-100;
     }
 }
 

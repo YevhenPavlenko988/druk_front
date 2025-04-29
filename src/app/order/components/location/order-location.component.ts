@@ -11,15 +11,16 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {take} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {SharedModule} from '../../../shared.module';
-import {ICONS} from '../../../$core/icons';
 import {PrintersService} from '../../services/printers.service';
-import {PrinterDTO} from '../../models/PrinterDTO';
+import {mapPrinter} from '../../transform/mapPrinter';
 import {
     ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,
-    ORDER_LOCATION_AVAILABLE_UNTIL_LABEL,
+    ORDER_LOCATION_AVAILABLE_LABEL,
     ORDER_LOCATION_SHEETS_LABEL,
     ORDER_LOCATION_TITLE_LABEL,
 } from '../../labels';
+import {PrinterDTOView} from '../../models/PrinterDTOView';
+import {ICONS} from '../../../$core/icons';
 
 
 @Component({
@@ -36,14 +37,14 @@ import {
 export class OrderLocationComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
     //
-    readonly orderLocationTitleLabel = ORDER_LOCATION_TITLE_LABEL;
-    readonly availableUntilLabel = ORDER_LOCATION_AVAILABLE_UNTIL_LABEL;
+    readonly locationTitleLabel = ORDER_LOCATION_TITLE_LABEL;
+    readonly availableLabel = ORDER_LOCATION_AVAILABLE_LABEL;
     readonly availableSheetsLabel = ORDER_LOCATION_AVAILABLE_SHEETS_LABEL;
     readonly sheetsLabel = ORDER_LOCATION_SHEETS_LABEL;
 
     loading: boolean | undefined;
-    printerList: Array<PrinterDTO>;
-    currentPrinter: PrinterDTO;
+    printerList: Array<PrinterDTOView>;
+    currentPrinter: PrinterDTOView;
 
     constructor(private destroyRef: DestroyRef,
                 private cd: ChangeDetectorRef,
@@ -72,19 +73,20 @@ export class OrderLocationComponent implements OnInit, OnDestroy {
             takeUntilDestroyed(this.destroyRef),
         ).subscribe({
             next: (r) => {
-                this.printerList = r;
+                this.printerList = r?.map(x => mapPrinter(x));
                 done();
             },
             error: (err) => {
                 if (environment.log.error) {
                     console.error(err);
                 }
+                // todo show some notify
                 done();
             },
         });
     }
 
-    setCurrentPrinter(printer: PrinterDTO) {
+    setCurrentPrinter(printer: PrinterDTOView) {
         this.currentPrinter = printer;
         this.cd.markForCheck();
     }

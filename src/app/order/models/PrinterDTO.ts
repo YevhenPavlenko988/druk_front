@@ -1,5 +1,9 @@
 export interface PrinterDTO {
     id?: string,
+    createdAt?: string,
+    updatedAt?: string,
+    createUserId?: string,
+    updateUserId?: string,
     name?: string,
     ip?: string,
     url?: string,
@@ -12,4 +16,11 @@ export interface PrinterDTO {
     model?: string,
     serialNumber?: string,
     note?: string
+    lastService?: string,
+    isActive?: boolean,
+    isOnline?: boolean,
+    schedule?: string,
+    priceOneSide?: number,
+    priceDuplex?: number,
+    serviceFee?: number
 }
