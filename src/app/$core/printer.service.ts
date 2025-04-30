@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable, of, tap} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {PrinterDTO} from '../models/PrinterDTO';
-import {joinUrl} from '../../$core/utils/joinUrl';
-import {PrinterListDTO} from '../models/PrinterListDTO';
+import {joinUrl} from './utils/joinUrl';
+import {environment} from '../../environments/environment';
+import {PrinterDTO} from './models/PrinterDTO';
+import {PrinterListDTO} from './models/PrinterListDTO';
+import {IdDTO} from './models/IdDTO';
 
 
 // API
 export const API_URL_PRINTER_LIST: string = '/printer/list';
+export const API_URL_PRINTER_BY_ID: string = '/printer/info-by-id';
 
 
 const printerList: PrinterListDTO = {
@@ -39,8 +41,9 @@ const printerList: PrinterListDTO = {
     ]
 };
 
+
 @Injectable({providedIn: 'root'})
-export class PrintersService {
+export class PrinterService {
 
     constructor(private http: HttpClient) {
         if (environment.log.debug) {
@@ -69,6 +72,31 @@ export class PrintersService {
                 },
             }),
             map((r: PrinterListDTO) => r?.printersList),
+        );
+    }
+
+    getPrinterInfo(printerId: string): Observable<PrinterDTO> {
+        const url: string = joinUrl(environment.apiUrl, API_URL_PRINTER_BY_ID);
+        const request: IdDTO = {
+            id: printerId,
+        };
+        if (environment.log.debug) {
+            console.log(`POST ${url}`, request);
+        }
+
+        return this.http.post(url, request).pipe(
+            tap({
+                next: (resp: any) => {
+                    if (environment.log.debug) {
+                        console.log(`RESULT POST: ${url}`, resp);
+                    }
+                },
+                error: (err: any) => {
+                    if (environment.log.error) {
+                        console.error(`RESULT POST: ${url} Error: `, err);
+                    }
+                },
+            }),
         );
     }
 }

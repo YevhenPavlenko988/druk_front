@@ -16,9 +16,32 @@
     </div>
 </div>
 <div class="order-main">
-    <order-location></order-location>
+    <div class="order-location">
+        <h2>{{locationTitleLabel | translate}}</h2>
+        <div class="location">
+            <div class="location-address">
+                <div class="location-address__icon">
+                    <mat-icon [svgIcon]="ICONS.location"></mat-icon>
+                </div>
+                <div class="location-address__content">
+                    <p class="name">{{printer?.name}}</p>
+                    <p>{{printer?.address}}</p>
+                </div>
+            </div>
+            <div class="location-info">
+                <div class="location-info__item">
+                    <mat-icon [svgIcon]="ICONS.clock"></mat-icon>
+                    {{availableLabel | translate}} {{printer?.schedule}}
+                </div>
+                <div class="location-info__item {{printer?.$sheetsClass}}">
+                    <mat-icon [svgIcon]="ICONS.inbox"></mat-icon>
+                    {{availableSheetsLabel | translate}} {{printer?.paperLeft}} {{sheetsLabel | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="order-content">
-        <order-files [loading]="loading"
+        <order-files [loading]="loadingFile"
                      [files]="fileList"
                      [settingsFormArray]="settingsFormArray"
                      (fileUploaded)="onFileUploaded($event)"

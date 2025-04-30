@@ -5,8 +5,10 @@ import {
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
+import {Router} from '@angular/router';
 import {SharedModule} from '../../../shared.module';
 import {environment} from '../../../../environments/environment';
+import {APP_ROUTES} from '../../../app.routes';
 import {ICONS} from '../../icons';
 
 
@@ -24,7 +26,7 @@ import {ICONS} from '../../icons';
 export class NavbarComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
 
-    constructor() {
+    constructor(private router: Router,) {
         if (environment.log.debug) {
             console.log('NavbarComponent constructor invoked.');
         }
@@ -34,5 +36,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+    }
+
+    goHome() {
+        this.router.navigate([APP_ROUTES.home.url]).catch((err) => {
+            if (environment.log.error) {
+                console.error(err);
+            }
+        });
     }
 }

@@ -7,24 +7,32 @@ import {
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {take} from 'rxjs';
-import {mapFile} from './transform/mapFile';
-import {environment} from '../../environments/environment';
 import {SharedModule} from '../shared.module';
-import {OrderLocationComponent} from './components/location/order-location.component';
+import {PrinterService} from '../$core/printer.service';
+import {FilesService} from './services/files.service';
 import {OrderFilesComponent} from './components/files/order-files.component';
 import {OrderSummaryComponent} from './components/summary/order-summary.component';
 import {DeleteFileDialogComponent} from './dialogs/delete-file-dialog/delete-file-dialog.component';
-import {ORDER_TITLE_LABEL} from './labels';
-import {COPIES_COUNT, FORM_ID, PRINT_TYPE} from './consts';
-import {FileDTOView} from './models/FileDTOView';
-import {FilesService} from './services/files.service';
-import {DeleteFileDialogOptions, DeleteFileDialogResult} from './dialogs/typing';
+import {mapPrinter} from '../$core/transform/mapPrinter';
+import {mapFile} from './transform/mapFile';
+import {environment} from '../../environments/environment';
+import {
+    ORDER_LOCATION_AVAILABLE_LABEL,
+    ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,
+    ORDER_LOCATION_SHEETS_LABEL,
+    ORDER_LOCATION_TITLE_LABEL,
+    ORDER_TITLE_LABEL
+} from './labels';
+import {COPIES_COUNT, FORM_ID, PRINT_TYPE, ROUTE_PRINTER_ID} from './consts';
 import {ICONS} from '../$core/icons';
+import {PrinterDTOView} from '../$core/models/PrinterDTOView';
+import {FileDTOView} from './models/FileDTOView';
+import {DeleteFileDialogOptions, DeleteFileDialogResult} from './dialogs/typing';
 
 
 @Component({
@@ -35,23 +43,32 @@ import {ICONS} from '../$core/icons';
     host: {
         'class': 'order-page',
     },
-    imports: [SharedModule, OrderLocationComponent, OrderFilesComponent, OrderSummaryComponent],
+    imports: [SharedModule, OrderFilesComponent, OrderSummaryComponent],
     standalone: true,
 })
 export class OrderComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
     // labels
     readonly orderTitleLabel = ORDER_TITLE_LABEL;
+    readonly locationTitleLabel = ORDER_LOCATION_TITLE_LABEL;
+    readonly availableLabel = ORDER_LOCATION_AVAILABLE_LABEL;
+    readonly availableSheetsLabel = ORDER_LOCATION_AVAILABLE_SHEETS_LABEL;
+    readonly sheetsLabel = ORDER_LOCATION_SHEETS_LABEL;
 
     loading: boolean;
+    loadingFile: boolean;
     // submitted: boolean;
+    printerId: string;
+    printer: PrinterDTOView;
     fileList: Array<FileDTOView>;
     settingsFormArray: FormArray<FormGroup> = new FormArray([]);
 
-    constructor(private router: Router,
+    constructor(private route: ActivatedRoute,
+                private router: Router,
                 private cd: ChangeDetectorRef,
                 private destroyRef: DestroyRef,
                 private dialog: MatDialog,
+                private printerService: PrinterService,
                 private filesService: FilesService) {
         if (environment.log.debug) {
             console.log('[OrderComponent] constructor loaded');
@@ -59,9 +76,43 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.route.params.pipe(
+            takeUntilDestroyed(this.destroyRef),
+        ).subscribe({
+            next: (params: Params) => {
+                this.printerId = params[ROUTE_PRINTER_ID];
+                this.loadPrinterInfo(this.printerId);
+            }
+        });
     }
 
     ngOnDestroy() {
+    }
+
+    loadPrinterInfo(id: string) {
+        this.loading = true;
+        this.cd.markForCheck();
+        const done = () => {
+            this.loading = false;
+            this.cd.markForCheck();
+        };
+
+        this.printerService.getPrinterInfo(id).pipe(
+            take(1),
+            takeUntilDestroyed(this.destroyRef),
+        ).subscribe({
+            next: (r) => {
+                this.printer = mapPrinter(r);
+                done();
+            },
+            error: (err) => {
+                if (environment.log.error) {
+                    console.error(err);
+                }
+                // todo show some notify
+                done();
+            },
+        });
     }
 
     createSettingsForm(file: FileDTOView) {
@@ -74,10 +125,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
 
     onFileUploaded(file: File) {
-        this.loading = true;
+        this.loadingFile = true;
         this.cd.markForCheck();
         const done = () => {
-            this.loading = false;
+            this.loadingFile = false;
             this.cd.markForCheck();
         };
 
