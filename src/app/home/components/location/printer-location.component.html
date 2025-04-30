@@ -1,0 +1,20 @@
+<button id="btnLocation" type="button"
+        class="btn location-btn"
+        [matMenuTriggerFor]="locationMenu"
+        [disabled]="loading">
+    <div class="location-btn__icon">
+        <mat-icon [svgIcon]="ICONS.location"></mat-icon>
+    </div>
+    <div class="location-btn__action">
+        <mat-icon [svgIcon]="ICONS.arrow_down"></mat-icon>
+    </div>
+    <mat-menu #locationMenu="matMenu" class="location-menu">
+        <button mat-menu-item
+                *ngFor="let p of printers"
+                class="location-menu__item"
+                (click)="goToOrder(p.id)">
+            <p>{{p.name}}</p>
+            <span>{{p.address}}</span>
+        </button>
+    </mat-menu>
+</button>

@@ -71,7 +71,8 @@ body { margin: 0; font-family: "Geologica", sans-serif; }
 
 //
 // Pages
+@import "pages/home";
+@import "elements/printer-location";
 @import "pages/order/order";
-@import "pages/order/components/order-location";
 @import "pages/order/components/order-files";
 @import "pages/order/components/order-summary";
