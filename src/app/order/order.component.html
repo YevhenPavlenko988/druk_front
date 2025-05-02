@@ -47,6 +47,8 @@
                      (fileUploaded)="onFileUploaded($event)"
                      (fileDeleted)="onFileDeleted($event)"
                      (fileChanged)="onFileChanged($event)"></order-files>
-        <order-summary></order-summary>
+
+        <order-summary [submitted]="submittedOrder"
+                       (createOrder)="onOrderCreated()"></order-summary>
     </div>
 </div>

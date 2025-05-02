@@ -20,9 +20,9 @@
         class="btn btn--44 btn-blue"
         (click)="onCreateOrder()"
         [disabled]="isDisabled">
-    <ng-container *ngIf="!loading">
+    <ng-container *ngIf="!submitted">
         <mat-icon [svgIcon]="ICONS.payment"></mat-icon>
         <span>{{btnCreateOrderLabel | translate}}</span>
     </ng-container>
-    <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+    <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
 </button>

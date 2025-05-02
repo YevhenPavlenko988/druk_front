@@ -1,11 +1,15 @@
 import {
+    booleanAttribute,
     ChangeDetectionStrategy,
     Component,
+    EventEmitter,
+    Input,
     OnDestroy,
     OnInit,
+    Output,
     ViewEncapsulation,
 } from '@angular/core';
-import {environment} from '../../../../environments/environment';
+import {SharedModule} from '../../../shared.module';
 import {
     ORDER_SUMMARY_BLACK_LABEL,
     ORDER_SUMMARY_COMMISSION_LABEL,
@@ -13,7 +17,6 @@ import {
     ORDER_SUMMARY_TITLE_LABEL,
     ORDER_SUMMARY_TOTAL_LABEL,
 } from '../../labels';
-import {SharedModule} from '../../../shared.module';
 import {ICONS} from '../../../$core/icons';
 
 
@@ -37,11 +40,11 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     readonly totalLabel = ORDER_SUMMARY_TOTAL_LABEL;
     readonly btnCreateOrderLabel = ORDER_SUMMARY_CREATE_BTN_LABEL;
 
-    loading: boolean;
-    // @Input({transform: booleanAttribute}) loading: boolean;
+    @Input({transform: booleanAttribute}) submitted: boolean;
+    @Output() createOrder = new EventEmitter<File>();
 
     get isDisabled(): boolean {
-        return true;
+        return this.submitted;
     }
 
     ngOnInit() {
@@ -52,5 +55,6 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
 
     onCreateOrder() {
         // block add file when pressed
+        this.createOrder.emit();
     }
 }
