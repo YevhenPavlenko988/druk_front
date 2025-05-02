@@ -11,10 +11,11 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {take} from 'rxjs';
+import {EMPTY, switchMap, take} from 'rxjs';
 import {SharedModule} from '../shared.module';
 import {PrinterService} from '../$core/printer.service';
 import {FilesService} from './services/files.service';
+import {OrderService} from './services/order.service';
 import {OrderFilesComponent} from './components/files/order-files.component';
 import {OrderSummaryComponent} from './components/summary/order-summary.component';
 import {DeleteFileDialogComponent} from './dialogs/delete-file-dialog/delete-file-dialog.component';
@@ -33,6 +34,8 @@ import {ICONS} from '../$core/icons';
 import {PrinterDTOView} from '../$core/models/PrinterDTOView';
 import {FileDTOView} from './models/FileDTOView';
 import {DeleteFileDialogOptions, DeleteFileDialogResult} from './dialogs/typing';
+import {OrderCreateDTO} from './models/OrderCreateDTO';
+import {SubOrderDTO} from './models/SubOrderDTO';
 
 
 @Component({
@@ -57,7 +60,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     loading: boolean;
     loadingFile: boolean;
-    // submitted: boolean;
+    submittedOrder: boolean;
     printerId: string;
     printer: PrinterDTOView;
     fileList: Array<FileDTOView>;
@@ -69,7 +72,8 @@ export class OrderComponent implements OnInit, OnDestroy {
                 private destroyRef: DestroyRef,
                 private dialog: MatDialog,
                 private printerService: PrinterService,
-                private filesService: FilesService) {
+                private filesService: FilesService,
+                private orderService: OrderService) {
         if (environment.log.debug) {
             console.log('[OrderComponent] constructor loaded');
         }
@@ -172,5 +176,62 @@ export class OrderComponent implements OnInit, OnDestroy {
     onFileChanged(file: FileDTOView) {
         // console.log(file);
         // console.log(this.fileList);
+    }
+
+    onOrderCreated() {
+        if (!(this.fileList?.length)) {
+            // todo show some notify
+            return;
+        }
+        this.submittedOrder = true;
+        this.cd.markForCheck();
+        const done = () => {
+            this.submittedOrder = false;
+            this.cd.markForCheck();
+        };
+        const subOrdersArray = this.buildSubOrdersArray(this.fileList);
+        const model: OrderCreateDTO = {
+            printerId: this.printerId,
+            subOrders: subOrdersArray
+        }
+        this.orderService.createOrder(model).pipe(
+            switchMap(order => {
+                if (!order) {
+                    return EMPTY;
+                }
+                return this.orderService.getPaymentForm(order.id);
+            }),
+            take(1),
+            takeUntilDestroyed(this.destroyRef)
+        ).subscribe({
+            next: (htmlFormString) => {
+                const formContainer = document.createElement('div');
+                formContainer.innerHTML = htmlFormString;
+
+                const form = formContainer.querySelector('form');
+                if (form) {
+                    document.body.appendChild(form);
+                    form.submit();
+                } else {
+                    console.error('Payment form is invalid.');
+                }
+                done();
+            },
+            error: (err) => {
+                if (environment.log.error) {
+                    console.error(err);
+                }
+                // todo show some notify
+                done();
+            }
+        });
+    }
+
+    buildSubOrdersArray(fileArray: Array<FileDTOView>): Array<SubOrderDTO> {
+        return (fileArray || []).map(x => ({
+            fileId: x.id,
+            copiesCount: x.$copiesCount,
+            printType: x.$printType
+        }));
     }
 }
