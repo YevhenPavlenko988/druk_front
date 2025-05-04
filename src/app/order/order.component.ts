@@ -22,6 +22,7 @@ import {DeleteFileDialogComponent} from './dialogs/delete-file-dialog/delete-fil
 import {mapPrinter} from '../$core/transform/mapPrinter';
 import {mapFile} from './transform/mapFile';
 import {environment} from '../../environments/environment';
+import {APP_ROUTES} from '../app.routes';
 import {
     ORDER_LOCATION_AVAILABLE_LABEL,
     ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,
@@ -121,6 +122,11 @@ export class OrderComponent implements OnInit, OnDestroy {
                 }
                 // todo show some notify
                 done();
+                this.router.navigate([APP_ROUTES.home.url]).catch((navErr) => {
+                    if (environment.log.error) {
+                        console.error(navErr);
+                    }
+                });
             },
         });
     }
