@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {ROUTE_PRINTER_ID} from './order/consts';
 
 export const APP_ROUTES = {
@@ -16,4 +16,9 @@ export const routes: Routes = [
         path: `${APP_ROUTES.order.path}/:${ROUTE_PRINTER_ID}`,
         loadComponent: () => import('./order/order.component').then(x => x.OrderComponent),
     },
+    {
+        path: '**',
+        data: {page404: true},
+        loadComponent: () => import('./not-found/not-found.component').then(x => x.NotFoundComponent)
+    }
 ];
