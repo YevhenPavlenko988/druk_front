@@ -59,8 +59,8 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
     @Input() files: Array<FileDTOView>;
     @Input() settingsFormArray: FormArray<FormGroup>;
     @Output() fileUploaded = new EventEmitter<File>();
-    @Output() fileDeleted = new EventEmitter<string>();
-    @Output() fileChanged = new EventEmitter<FileDTOView>();
+    @Output() fileDeleted = new EventEmitter<number>();
+    @Output() fileChanged = new EventEmitter();
 
     get isDisabled(): boolean {
         return this.loading;
@@ -87,12 +87,13 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
         this.fileUploaded.emit(file);
     }
 
-    onDeleteFile(key: string) {
-        if (!key) {
+    onDeleteFile(index: number) {
+        const file = this.files[index];
+        if (!file || !file.s3key) {
             // todo show some notify
             return;
         }
-        this.fileDeleted.emit(key);
+        this.fileDeleted.emit(index);
     }
 
     changePrintType(id: string) {
@@ -103,8 +104,8 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
         }
         const isDouble = currentForm.get(PRINT_TYPE)?.value;
         file.$printType = isDouble ? PrintTypeEnum.DUPLEX : PrintTypeEnum.ONE_SIDED;
-        this.fileChanged.emit(file);
         this.cd.markForCheck();
+        this.fileChanged.emit(file);
     }
 
 
@@ -120,8 +121,8 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
         }
         currentControl.setValue(currentControl.value - 1);
         file.$copiesCount = currentControl.value;
-        this.fileChanged.emit(file);
         this.cd.markForCheck();
+        this.fileChanged.emit(file);
     }
 
     increaseCopies(id: string) {
@@ -133,12 +134,16 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
         }
         currentControl.setValue(currentControl.value + 1);
         file.$copiesCount = currentControl.value;
-        this.fileChanged.emit(file);
         this.cd.markForCheck();
+        this.fileChanged.emit(file);
     }
 
     findCurrentForm(id: string): FormGroup {
         return this.settingsFormArray.controls
                    .find(fg => fg.get(FORM_ID)?.value === id) as FormGroup | undefined;
+    }
+
+    trackByFn(file: FileDTOView | any) {
+        return file?.id;
     }
 }

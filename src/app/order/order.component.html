@@ -46,9 +46,11 @@
                      [settingsFormArray]="settingsFormArray"
                      (fileUploaded)="onFileUploaded($event)"
                      (fileDeleted)="onFileDeleted($event)"
-                     (fileChanged)="onFileChanged($event)"></order-files>
+                     (fileChanged)="onFileChanged()"></order-files>
 
         <order-summary [submitted]="submittedOrder"
+                       [price]="price"
+                       [cost]="cost"
                        (createOrder)="onOrderCreated()"></order-summary>
     </div>
 </div>

@@ -18,7 +18,7 @@
 
 <ng-template #filesTmpl>
     <div class="files">
-        <div *ngFor="let file of files; let i = index" class="files-item">
+        <div *ngFor="let file of files; let i = index; trackBy: trackByFn" class="files-item">
             <div class="files-item-info">
                 <div class="files-item__icon">
                     <mat-icon [svgIcon]="ICONS.document"></mat-icon>
@@ -28,7 +28,7 @@
                     <span>{{pagesLabel | translate}} {{file.pagesCount}}</span>
                 </div>
                 <div class="files-item__delete">
-                    <button class="btn" (click)="onDeleteFile(file.s3key)">
+                    <button class="btn" (click)="onDeleteFile(i)">
                         <mat-icon [svgIcon]="ICONS.cross"></mat-icon>
                     </button>
                 </div>

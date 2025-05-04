@@ -8,6 +8,7 @@ export const MAX_SIZE_MB = 50;
 export const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
 export const MIN_COPIES_COUNT = 1;
 export const MAX_COPIES_COUNT = 100;
+export const DECIMAL_PATTERN = '1.2-2';
 
 //
 // form fields

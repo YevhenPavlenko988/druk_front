@@ -36,6 +36,9 @@ import {FileDTOView} from './models/FileDTOView';
 import {DeleteFileDialogOptions, DeleteFileDialogResult} from './dialogs/typing';
 import {OrderCreateDTO} from './models/OrderCreateDTO';
 import {SubOrderDTO} from './models/SubOrderDTO';
+import {PrintTypeEnum} from './models/PrintTypeEnum';
+import {Price} from './models/Price';
+import {Cost} from './models/Cost';
 
 
 @Component({
@@ -65,6 +68,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     printer: PrinterDTOView;
     fileList: Array<FileDTOView>;
     settingsFormArray: FormArray<FormGroup> = new FormArray([]);
+    price: Price;
+    cost: Cost;
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -107,6 +112,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         ).subscribe({
             next: (r) => {
                 this.printer = mapPrinter(r);
+                this.price = this.setPrices();
                 done();
             },
             error: (err) => {
@@ -146,6 +152,7 @@ export class OrderComponent implements OnInit, OnDestroy {
                 const fileToView = mapFile(r);
                 this.createSettingsForm(fileToView);
                 this.fileList = [...(this.fileList || []), fileToView];
+                this.cost = this.calculateCost();
                 done();
             },
             error: (err) => {
@@ -158,24 +165,27 @@ export class OrderComponent implements OnInit, OnDestroy {
         });
     }
 
-    onFileDeleted(key: string) {
+    onFileDeleted(index: number) {
         const dialogRef = this.dialog.open<
             DeleteFileDialogComponent,
             DeleteFileDialogOptions,
             DeleteFileDialogResult
-        >(DeleteFileDialogComponent, {data: {s3key: key}});
+        >(DeleteFileDialogComponent, {data: {s3key: this.fileList[index].s3key}});
+
         dialogRef.afterClosed().subscribe(result => {
             if (!result) {
                 return;
             }
-            this.fileList = this.fileList.filter(x => x.s3key !== result.s3key);
+            this.fileList = this.fileList.filter((_, i) => i !== index);
+            this.settingsFormArray.removeAt(index);
+            this.cost = this.calculateCost();
             this.cd.markForCheck();
         });
     }
 
-    onFileChanged(file: FileDTOView) {
-        // console.log(file);
-        // console.log(this.fileList);
+    onFileChanged() {
+        this.cost = this.calculateCost();
+        this.cd.markForCheck();
     }
 
     onOrderCreated() {
@@ -233,5 +243,45 @@ export class OrderComponent implements OnInit, OnDestroy {
             copiesCount: x.$copiesCount,
             printType: x.$printType
         }));
+    }
+
+    calculateCost(): Cost | null {
+        if (!this.printer || !this.fileList?.length) {
+            return null;
+        }
+        const {serviceFee, priceOneSide, priceDuplex} = this.printer || {};
+        let singleCount = 0;
+        let doubleCount = 0;
+        let totalPrice = 0;
+
+        for (const file of this.fileList) {
+            const {pagesCount, $copiesCount, $printType} = file;
+            const isSingleSided = $printType === PrintTypeEnum.ONE_SIDED;
+            const pageCount = isSingleSided
+                ? pagesCount * $copiesCount
+                : Math.ceil(pagesCount / 2) * $copiesCount;
+
+            if (isSingleSided) {
+                singleCount += pageCount;
+                totalPrice += pageCount * priceOneSide;
+            } else {
+                doubleCount += pageCount;
+                totalPrice += pageCount * priceDuplex;
+            }
+        }
+        return {
+            singleCount: singleCount,
+            doubleCount: doubleCount,
+            totalCost: totalPrice + serviceFee,
+        }
+    }
+
+    setPrices(): Price {
+        const {serviceFee, priceOneSide, priceDuplex} = this.printer || {};
+        return {
+            serviceFee: serviceFee,
+            singlePrice: priceOneSide,
+            doublePrice: priceDuplex,
+        }
     }
 }
