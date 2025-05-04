@@ -40,7 +40,8 @@
         },
         "summary": {
             "title": "Summary",
-            "black": "B&W pages",
+            "single": "B&W single-sided",
+            "double": "B&W double-sided",
             "commission": "Service commission",
             "total": "Total cost",
             "btnCreate": "Go to payment"

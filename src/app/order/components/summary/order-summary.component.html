@@ -2,17 +2,21 @@
 <div class="summary">
     <div class="summary-details">
         <div class="summary-details__item">
-            <div class="label">{{blackLabel | translate}}</div>
-            <div>!! x 50.00 ₴</div>
+            <div class="label">{{singleLabel | translate}}</div>
+            <div>{{cost?.singleCount || 0}} x {{(price?.singlePrice || 0) | number: decimalPattern}} ₴</div>
+        </div>
+        <div class="summary-details__item">
+            <div class="label">{{doubleLabel | translate}}</div>
+            <div>{{cost?.doubleCount || 0}} x {{(price?.doublePrice || 0) | number: decimalPattern}} ₴</div>
         </div>
         <div class="summary-details__item">
             <div class="label">{{commissionLabel | translate}}</div>
-            <div>111150.00 ₴</div>
+            <div>{{(price?.serviceFee || 0) | number: decimalPattern}} ₴</div>
         </div>
     </div>
     <div class="summary-total">
         <div class="label">{{totalLabel | translate}}</div>
-        <div>2222560.00 ₴</div>
+        <div>{{(cost?.totalCost || 0) | number: decimalPattern}} ₴</div>
     </div>
 </div>
 
