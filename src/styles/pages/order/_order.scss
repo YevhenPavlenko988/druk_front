@@ -2,65 +2,6 @@
 
 }
 
-.order-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 32px;
-}
-
-.order-steps {
-    display: flex;
-    justify-content: space-between;
-}
-
-.order-steps__item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    //width: 100%;
-    color: $gray;
-
-    &:not(:last-of-type) {
-        width: 100%;
-        min-width: 140px;
-    }
-
-    &:not(:last-of-type):after {
-        content: "";
-        position: absolute;
-        height: 2px;
-        width: 100%;
-        top: 16px;
-        left: 0;
-        background: $white-100;
-        z-index: -1;
-    }
-}
-
-.order-steps__badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: $white-100;
-    color: $black-100;
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-    font-size: $font-size-16;
-    border-radius: 50%;
-}
-
-.order-steps__item:first-of-type {
-    color: $blue-main;
-
-    .order-steps__badge {
-        background: $blue-main;
-        color: $white-100;
-    }
-}
-
 .order-main {
     display: flex;
     gap: 24px;
@@ -156,26 +97,11 @@
 }
 
 @include media-breakpoint-down(hd) {
-    .order-header {
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .order-steps {
-        width: 100%;
-    }
-
     .order-main {
         flex-direction: column;
     }
 
     .order-location {
         align-items: center;
-    }
-}
-
-@include media-breakpoint-down(xxs) {
-    .order-steps__item:not(:last-of-type) {
-        min-width: 120px;
     }
 }

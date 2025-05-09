@@ -5,6 +5,7 @@ $white-100: rgb(255, 255, 255); // #FFFFFF;
 //
 // black color
 $black-100: rgb(23, 27, 33); // #1B1B1E
+$black-80: rgb(23, 27, 33, 0.8); // #1B1B1E
 //
 // blue color
 $blue-main: rgb(18, 101, 168); // #1265A8
@@ -19,9 +20,11 @@ $gray-light: #E8EBF0; // #E8EBF0
 //
 // green color
 $green-100: #3E987F;
+$technical-green: rgb(0, 172, 90);
 //
 // red color
 $red-100: #B82929;
+$technical-red: rgb(255, 41, 67);
 //
 // brand colors
 $brand--color: $blue-main;

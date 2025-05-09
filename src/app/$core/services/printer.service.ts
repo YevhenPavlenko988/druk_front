@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable, of, tap} from 'rxjs';
-import {joinUrl} from './utils/joinUrl';
-import {environment} from '../../environments/environment';
-import {PrinterDTO} from './models/PrinterDTO';
-import {PrinterListDTO} from './models/PrinterListDTO';
-import {IdDTO} from './models/IdDTO';
+import {joinUrl} from '../utils/joinUrl';
+import {environment} from '../../../environments/environment';
+import {PrinterDTO} from '../models/PrinterDTO';
+import {PrinterListDTO} from '../models/PrinterListDTO';
+import {IdDTO} from '../models/IdDTO';
 
 
 // API

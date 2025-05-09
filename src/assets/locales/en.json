@@ -1,50 +1,78 @@
 {
-    "layout": {
-        "footer": {
-            "terms": "Terms of Service",
-            "policy": "Privacy Policy"
-        }
-    },
-    "home": {
-        "btn": "Click Me"
-    },
-    "order": {
-        "title": "Place a print order",
-        "steps": {
-            "first": "Adding files",
-            "second": "Payment",
-            "last": "Printing"
-        },
-        "location": {
-            "title": "Location",
-            "available": "Available",
-            "availableSheets": "Available for printing:",
-            "sheets": "sheets"
-        },
-        "files": {
-            "title": "Files",
-            "btnAdd": "Add files",
-            "direction": {
-                "title": "Add or drag & drop files to print",
-                "format": "Supporting formats: pdf",
-                "size": "Size: up to 50Mb"
-            },
-            "pages": "Pages:",
-            "sides": "Double-sided printing",
-            "delete": {
-                "title": "Delete file",
-                "content": "Are you sure you want to delete the file?",
-                "btnDelete": "Delete",
-                "btnCancel": "Cancel"
-            }
-        },
-        "summary": {
-            "title": "Summary",
-            "single": "B&W single-sided",
-            "double": "B&W double-sided",
-            "commission": "Service commission",
-            "total": "Total cost",
-            "btnCreate": "Go to payment"
-        }
+  "common": {
+    "header": {
+      "title": "Place a print order",
+      "steps": {
+        "files": "Adding files",
+        "payment": "Payment",
+        "print": "Printing"
+      }
     }
+  },
+  "layout": {
+    "footer": {
+      "terms": "Terms of Service",
+      "policy": "Privacy Policy"
+    }
+  },
+  "home": {
+    "btn": "Click Me"
+  },
+  "order": {
+    "title": "Place a print order",
+    "steps": {
+      "first": "Adding files",
+      "second": "Payment",
+      "last": "Printing"
+    },
+    "location": {
+      "title": "Location",
+      "available": "Available",
+      "availableSheets": "Available for printing:",
+      "sheets": "sheets"
+    },
+    "files": {
+      "title": "Files",
+      "btnAdd": "Add files",
+      "direction": {
+        "title": "Add or drag & drop files to print",
+        "format": "Supporting formats: .pdf, .png, .jpg, .txt, .doc, .docx, .xls, .xlsx, .ppt, .pptx",
+        "size": "Size: up to 50Mb"
+      },
+      "pages": "Pages:",
+      "sides": "Double-sided printing",
+      "delete": {
+        "title": "Delete file",
+        "content": "Are you sure you want to delete the file?",
+        "btnDelete": "Delete",
+        "btnCancel": "Cancel"
+      }
+    },
+    "summary": {
+      "title": "Summary",
+      "single": "B&W single-sided",
+      "double": "B&W double-sided",
+      "commission": "Service commission",
+      "total": "Total cost",
+      "btnCreate": "Go to payment"
+    }
+  },
+  "print": {
+    "success": {
+      "title": "The payment was successful",
+      "text": "You can start printing as soon as you are ready",
+      "btnPrint": "Start printing"
+    },
+    "fail": {
+      "title": "Something went wrong",
+      "text": "Payment has not been made. Try again or contact customer support",
+      "btnAgain": "Try again",
+      "btnBack": "Go back"
+    },
+    "printing": {
+      "title": "Wait for the end of printing",
+      "text": "If you have any questions or something went wrong, please contact",
+      "btnMore": "Print more files"
+    }
+  }
 }

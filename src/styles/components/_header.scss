@@ -1,0 +1,92 @@
+.pg-header {
+
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.steps__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: $gray;
+  font-weight: $font--light;
+
+  &:not(:last-of-type) {
+    width: 100%;
+    min-width: 140px;
+  }
+
+  &:not(:last-of-type):after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 16px;
+    left: 0;
+    background: $white-100;
+    z-index: -1;
+  }
+}
+
+.steps__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $white-100;
+  color: $black-100;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  font-size: $font-size-16;
+  border-radius: 50%;
+}
+
+.steps__item.active {
+  color: $blue-main;
+
+  .steps__badge {
+    background: $blue-main;
+    color: $white-100;
+  }
+}
+
+.steps__item.completed {
+  color: $black-100;
+
+  .steps__badge {
+    background: $blue-main;
+    color: $white-100;
+  }
+
+  &:after {
+    background: $blue-main;
+  }
+}
+
+@include media-breakpoint-down(hd) {
+  .header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .steps {
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-down(xxs) {
+  .steps__item:not(:last-of-type) {
+    min-width: 120px;
+  }
+}

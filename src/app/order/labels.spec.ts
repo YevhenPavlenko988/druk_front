@@ -22,7 +22,6 @@ import {
     ORDER_SUMMARY_CREATE_BTN_LABEL,
     ORDER_SUMMARY_TITLE_LABEL,
     ORDER_SUMMARY_TOTAL_LABEL,
-    ORDER_TITLE_LABEL,
     ORDER_SUMMARY_SINGLE_LABEL,
     ORDER_SUMMARY_DOUBLE_LABEL,
 } from './labels';
@@ -43,8 +42,6 @@ describe('order#translates', () => {
     }));
 
     for (const key of [
-        ORDER_TITLE_LABEL,
-
         ORDER_LOCATION_TITLE_LABEL,
         ORDER_LOCATION_AVAILABLE_LABEL,
         ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,

@@ -12,12 +12,13 @@ import {
 } from '@angular/core';
 import {FormArray, FormGroup} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
-import {COPIES_COUNT, FORM_ID, MAX_COPIES_COUNT, MIN_COPIES_COUNT, PRINT_TYPE} from '../../consts';
+import {COPIES_COUNT, FILE_FORMATS, FORM_ID, MAX_COPIES_COUNT, MIN_COPIES_COUNT, PRINT_TYPE} from '../../consts';
 import {
     ORDER_FILES_ADD_DIRECTION_LABEL,
     ORDER_FILES_ADD_FORMAT_LABEL,
     ORDER_FILES_BTN_ADD_LABEL,
-    ORDER_FILES_PAGES_LABEL, ORDER_FILES_SIDES_LABEL,
+    ORDER_FILES_PAGES_LABEL,
+    ORDER_FILES_SIDES_LABEL,
     ORDER_FILES_TITLE_LABEL,
 } from '../../labels';
 import {SharedModule} from '../../../shared.module';
@@ -52,6 +53,7 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
 
     readonly minCopiesCount = MIN_COPIES_COUNT;
     readonly maxCopiesCount = MAX_COPIES_COUNT;
+    readonly fileFormats = FILE_FORMATS.join(',');
     readonly env = environment;
 
     @Input({transform: booleanAttribute}) loading: boolean;
@@ -140,7 +142,7 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
 
     findCurrentForm(id: string): FormGroup {
         return this.settingsFormArray.controls
-                   .find(fg => fg.get(FORM_ID)?.value === id) as FormGroup | undefined;
+            .find(fg => fg.get(FORM_ID)?.value === id) as FormGroup | undefined;
     }
 
     trackByFn(file: FileDTOView | any) {

@@ -13,22 +13,24 @@ import {MatDialog} from '@angular/material/dialog';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {EMPTY, switchMap, take} from 'rxjs';
 import {SharedModule} from '../shared.module';
-import {PrinterService} from '../$core/printer.service';
+import {NotifyService} from '../$core/services/notify.service';
+import {PrinterService} from '../$core/services/printer.service';
 import {FilesService} from './services/files.service';
 import {OrderService} from './services/order.service';
 import {OrderFilesComponent} from './components/files/order-files.component';
 import {OrderSummaryComponent} from './components/summary/order-summary.component';
 import {DeleteFileDialogComponent} from './dialogs/delete-file-dialog/delete-file-dialog.component';
+import {PageHeaderComponent} from '../$core/header/page-header.component';
 import {mapPrinter} from '../$core/transform/mapPrinter';
 import {mapFile} from './transform/mapFile';
 import {environment} from '../../environments/environment';
 import {APP_ROUTES} from '../app.routes';
+import {COMMON_ERROR_LABEL} from '../$core/consts';
 import {
     ORDER_LOCATION_AVAILABLE_LABEL,
     ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,
     ORDER_LOCATION_SHEETS_LABEL,
     ORDER_LOCATION_TITLE_LABEL,
-    ORDER_TITLE_LABEL
 } from './labels';
 import {COPIES_COUNT, FORM_ID, PRINT_TYPE, ROUTE_PRINTER_ID} from './consts';
 import {ICONS} from '../$core/icons';
@@ -50,13 +52,12 @@ import {Cost} from './models/Cost';
     host: {
         'class': 'order-page',
     },
-    imports: [SharedModule, OrderFilesComponent, OrderSummaryComponent],
+    imports: [SharedModule, PageHeaderComponent, OrderFilesComponent, OrderSummaryComponent],
     standalone: true,
 })
 export class OrderComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
     // labels
-    readonly orderTitleLabel = ORDER_TITLE_LABEL;
     readonly locationTitleLabel = ORDER_LOCATION_TITLE_LABEL;
     readonly availableLabel = ORDER_LOCATION_AVAILABLE_LABEL;
     readonly availableSheetsLabel = ORDER_LOCATION_AVAILABLE_SHEETS_LABEL;
@@ -77,6 +78,7 @@ export class OrderComponent implements OnInit, OnDestroy {
                 private cd: ChangeDetectorRef,
                 private destroyRef: DestroyRef,
                 private dialog: MatDialog,
+                private notify: NotifyService,
                 private printerService: PrinterService,
                 private filesService: FilesService,
                 private orderService: OrderService) {
@@ -134,7 +136,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     createSettingsForm(file: FileDTOView) {
         const form = new FormGroup({
             [FORM_ID]: new FormControl(file.id),
-            [PRINT_TYPE]: new FormControl(false),
+            [PRINT_TYPE]: new FormControl({value: false, disabled: file.$isOnePage}),
             [COPIES_COUNT]: new FormControl(file.$copiesCount),
         });
         this.settingsFormArray.push(form);
@@ -165,7 +167,7 @@ export class OrderComponent implements OnInit, OnDestroy {
                 if (environment.log.error) {
                     console.error(err);
                 }
-                // todo show some notify
+                this.notify.error(COMMON_ERROR_LABEL);
                 done();
             },
         });
@@ -196,7 +198,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     onOrderCreated() {
         if (!(this.fileList?.length)) {
-            // todo show some notify
+            this.notify.error(COMMON_ERROR_LABEL);
             return;
         }
         this.submittedOrder = true;
@@ -237,7 +239,7 @@ export class OrderComponent implements OnInit, OnDestroy {
                 if (environment.log.error) {
                     console.error(err);
                 }
-                // todo show some notify
+                this.notify.error(COMMON_ERROR_LABEL);
                 done();
             }
         });

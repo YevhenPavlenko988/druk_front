@@ -36,14 +36,14 @@ $druk-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-@import "@fontsource/geologica";
+@import '@fontsource/geologica';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: "Geologica", sans-serif; }
 
 //
 //
-@import "theme";
+@import 'theme';
 
 //
 //
@@ -58,21 +58,24 @@ body { margin: 0; font-family: "Geologica", sans-serif; }
 //
 // Components
 @import 'components/layout';
+@import 'components/header';
 
 //
 // Elements
 @import 'elements/buttons';
+@import 'elements/printer-location';
 
 //
 // Addons
 @import 'addons/addon--menu';
 @import 'addons/addon--dialog';
 @import 'addons/addon--toggle';
+@import 'addons/addon--notify';
 
 //
 // Pages
-@import "pages/home";
-@import "elements/printer-location";
-@import "pages/order/order";
-@import "pages/order/components/order-files";
-@import "pages/order/components/order-summary";
+@import 'pages/home';
+@import 'pages/order/order';
+@import 'pages/order/components/order-files';
+@import 'pages/order/components/order-summary';
+@import 'pages/print';

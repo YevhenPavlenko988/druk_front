@@ -23,6 +23,7 @@
     align-items: center;
     width: 320px;
     max-width: 320px;
+    margin: 0 16px;
 }
 
 .files-add__icon img {
@@ -38,6 +39,7 @@
     gap: 4px;
     color: $gray-dark;
     font-weight: $font--light;
+    text-align: center;
 
     h5 {
         color: $black-100;

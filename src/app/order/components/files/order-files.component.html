@@ -37,7 +37,9 @@
                 <form *ngIf="settingsFormArray" id="formSettings" autocomplete="off" novalidate
                       [formGroup]="settingsFormArray.at(i)"
                       class="files-item-form">
-                    <mat-slide-toggle [formControlName]="printTypeField" [id]="printTypeField + i" hideIcon="true"
+                    <mat-slide-toggle [formControlName]="printTypeField"
+                                      [id]="printTypeField + '_' + i"
+                                      hideIcon="true"
                                       (change)="changePrintType(file.id)">
                         {{sidesLabel | translate}}
                     </mat-slide-toggle>
@@ -48,7 +50,7 @@
                             <mat-icon [svgIcon]="ICONS.minus"></mat-icon>
                         </button>
                         <input matInput type="number" readonly
-                               [formControlName]="copiesCountField" [id]="copiesCountField + i">
+                               [formControlName]="copiesCountField" [id]="copiesCountField + '_' + i">
                         <button type="button" class="btn btn-icon files-item-count__btn"
                                 [disabled]="file.$copiesCount === maxCopiesCount"
                                 (click)="increaseCopies(file.id)">
@@ -75,6 +77,6 @@
         <input #fileInput type="file"
                hidden
                (change)="onAddFile(fileInput)"
-               accept="application/pdf">
+               [attr.accept]="fileFormats">
     </button>
 </ng-template>
