@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {DEFAULT_LANG, STORAGE_LANG_NAME} from './consts';
+import {DEFAULT_LANG, STORAGE_LANG_NAME} from '../consts';
 
 @Injectable({providedIn: 'root'})
 export class LanguageService {

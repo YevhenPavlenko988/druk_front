@@ -1,5 +1,3 @@
-export const ORDER_TITLE_LABEL = 'order.title';
-
 //
 // location
 export const ORDER_LOCATION_TITLE_LABEL = 'order.location.title';

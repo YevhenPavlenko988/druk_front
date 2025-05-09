@@ -1,0 +1,17 @@
+<div class="header">
+    <h1>{{titleLabel | translate}}</h1>
+    <div class="steps">
+        <div class="steps__item"
+             *ngFor="let s of steps"
+             [class.active]="step === s.code"
+             [class.completed]="isCompleted(s.code)">
+            <div class="steps__badge">
+                <ng-container *ngIf="isCompleted(s.code); else textTmpl">
+                    <mat-icon [svgIcon]="ICONS.done"></mat-icon>
+                </ng-container>
+                <ng-template #textTmpl>{{ s.value }}</ng-template>
+            </div>
+            {{s.label | translate}}
+        </div>
+    </div>
+</div>

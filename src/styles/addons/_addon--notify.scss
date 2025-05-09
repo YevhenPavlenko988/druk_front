@@ -1,0 +1,15 @@
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-supporting-text-color: #{$black-80};
+
+  &.notify {
+    margin-top: 72px;
+  }
+
+  &.success {
+    --mdc-snackbar-container-color: #{$technical-green};
+  }
+
+  &.error {
+    --mdc-snackbar-container-color: #{$technical-red};
+  }
+}

@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {take} from 'rxjs';
 import {SharedModule} from '../shared.module';
-import {PrinterService} from '../$core/printer.service';
+import {PrinterService} from '../$core/services/printer.service';
 import {PrinterLocationComponent} from './components/location/printer-location.component';
 import {mapPrinter} from '../$core/transform/mapPrinter';
 import {environment} from '../../environments/environment';

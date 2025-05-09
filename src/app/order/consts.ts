@@ -1,4 +1,3 @@
-
 //
 // route param
 export const ROUTE_PRINTER_ID = 'id';
@@ -15,3 +14,11 @@ export const DECIMAL_PATTERN = '1.2-2';
 export const FORM_ID = 'formId';
 export const PRINT_TYPE = 'printType';
 export const COPIES_COUNT = 'copiesCount';
+
+export const FILE_FORMATS: Array<string> = [
+    '.docx', '.pptx', '.xls', '.doc', '.xlsx', '.ppt', '.txt', '.pdf',
+    '.jpg', '.png', '.gif', '.tiff', '.bmp', '.heic', '.bin', '.html',
+    '.xml', '.csv', '.odt', '.ods', '.odp', '.odg', '.odc', '.odf',
+    '.odm', '.oth', '.ott', '.ots', '.otp', '.otg', '.otc', '.otf',
+    '.otm', '.rtf', '.md'
+];

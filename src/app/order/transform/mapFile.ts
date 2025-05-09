@@ -9,6 +9,7 @@ export function mapFile(file: FileDTO): FileDTOView {
     const f = (file || {}) as FileDTOView;
 
     f.$name = getFileName(file.s3key);
+    f.$isOnePage = file.pagesCount <= 1;
     f.$printType = PrintTypeEnum.ONE_SIDED;
     f.$copiesCount = MIN_COPIES_COUNT;
 

@@ -1,0 +1,148 @@
+<pg-header [step]="step"></pg-header>
+<div class="print-content">
+    <div class="print-panel">
+        <ng-container *ngIf="!loading; else loadingTmpl">
+            <div class="print-panel__content">
+                <ng-container *ngTemplateOutlet="step==='payment' ? paymentTmpl : printTmpl"></ng-container>
+            </div>
+        </ng-container>
+
+        <ng-template #loadingTmpl>
+            <div class="print-loading">
+                <mat-spinner diameter="48"></mat-spinner>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<ng-template #paymentTmpl>
+    <ng-container *ngIf="isSuccess; else failTmp">
+        <div class="print-panel__icon">
+            <img src="assets/images/payment_success.png?v={{env.version}}" alt="file">
+        </div>
+        <div class="print-panel__text">
+            <h5>{{successTitleLabel | translate}}</h5>
+            <p>{{successTextLabel | translate}}</p>
+        </div>
+        <div class="print-panel__btns">
+            <button id="btnPrint" type="button"
+                    class="btn btn--44 btn-blue"
+                    (click)="onPrintOrder()"
+                    [disabled]="isDisabled">
+                <ng-container *ngIf="!submitted">
+                    <mat-icon [svgIcon]="ICONS.play"></mat-icon>
+                    <span>{{btnPrintLabel | translate}}</span>
+                </ng-container>
+                <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+            </button>
+        </div>
+    </ng-container>
+
+    <ng-template #failTmp>
+        <div class="print-panel__icon">
+            <img src="assets/images/payment_fail.png?v={{env.version}}" alt="file">
+        </div>
+        <div class="print-panel__text">
+            <h5>{{failTitleLabel | translate}}</h5>
+            <p>{{failTextLabel | translate}}</p>
+        </div>
+        <div class="print-panel__btns">
+            <button id="btnAgain" type="button"
+                    class="btn btn--44 btn-blue"
+                    (click)="onPayAgain()"
+                    [disabled]="isDisabled">
+                <ng-container *ngIf="!submitted">
+                    <mat-icon [svgIcon]="ICONS.payment"></mat-icon>
+                    <span>{{btnAgainLabel | translate}}</span>
+                </ng-container>
+                <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+            </button>
+            <button id="btnToAddFiles" type="button"
+                    class="btn btn--44 btn-transparent"
+                    (click)="goToOrder()"
+                    [disabled]="isDisabled">
+                <mat-icon [svgIcon]="ICONS.arrow_left"></mat-icon>
+                <span>{{btnBackLabel | translate}}</span>
+            </button>
+        </div>
+    </ng-template>
+</ng-template>
+
+<ng-template #printTmpl>
+    <div class="print-panel__icon">
+        <img src="assets/images/printing.png?v={{env.version}}" alt="file">
+    </div>
+    <div class="print-panel__text">
+        <h5>{{printingTitleLabel | translate}}</h5>
+        <p>{{printingTextLabel | translate}}</p>
+    </div>
+    <div class="print-panel__btns">
+        <button id="btnMore" type="button"
+                class="btn btn--44 btn-blue"
+                (click)="goToOrder()"
+                [disabled]="isDisabled">
+            <mat-icon [svgIcon]="ICONS.files"></mat-icon>
+            <span>{{btnMoreLabel | translate}}</span>
+        </button>
+    </div>
+</ng-template>
+
+
+<!--                        <ng-container *ngIf="step==='payment'; else printTmpl">-->
+<!--                            <ng-container *ngIf="isSuccess; else failTmp">-->
+<!--                                <div class="print-panel__icon">-->
+<!--                                    <img src="assets/images/payment_success.png?v={{env.version}}" alt="file">-->
+<!--                                </div>-->
+<!--                                <div class="print-panel__text">-->
+<!--                                    <h5>{{successTitleLabel | translate}}</h5>-->
+<!--                                    <p>{{successTextLabel | translate}}</p>-->
+<!--                                </div>-->
+<!--                                <div class="print-panel__btns">-->
+<!--                                    <button id="btnPrint" type="button"-->
+<!--                                            class="btn btn&#45;&#45;44 btn-blue"-->
+<!--                                            (click)="onPrintOrder()"-->
+<!--                                            [disabled]="isDisabled">-->
+<!--                                        <ng-container *ngIf="!submitted">-->
+<!--                                            <mat-icon [svgIcon]="ICONS.play"></mat-icon>-->
+<!--                                            <span>{{btnPrintLabel | translate}}</span>-->
+<!--                                        </ng-container>-->
+<!--                                        <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </ng-container>-->
+
+<!--                            <ng-template #failTmp>-->
+<!--                                <div class="print-panel__icon">-->
+<!--                                    <img src="assets/images/payment_fail.png?v={{env.version}}" alt="file">-->
+<!--                                </div>-->
+<!--                                <div class="print-panel__text">-->
+<!--                                    <h5>{{failTitleLabel | translate}}</h5>-->
+<!--                                    <p>{{failTextLabel | translate}}</p>-->
+<!--                                </div>-->
+<!--                                <div class="print-panel__btns">-->
+<!--                                    <button id="btnAgain" type="button"-->
+<!--                                            class="btn btn&#45;&#45;44 btn-blue"-->
+<!--                                            (click)="onPayAgain()"-->
+<!--                                            [disabled]="isDisabled">-->
+<!--                                        <ng-container *ngIf="!submitted">-->
+<!--                                            <mat-icon [svgIcon]="ICONS.payment"></mat-icon>-->
+<!--                                            <span>{{btnAgainLabel | translate}}</span>-->
+<!--                                        </ng-container>-->
+<!--                                        <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>-->
+<!--                                    </button>-->
+<!--                                    <button id="btnToAddFiles" type="button"-->
+<!--                                            class="btn btn&#45;&#45;44 btn-transparent"-->
+<!--                                            (click)="goToOrder()"-->
+<!--                                            [disabled]="isDisabled">-->
+<!--                                        <mat-icon [svgIcon]="ICONS.arrow_left"></mat-icon>-->
+<!--                                        <span>{{btnBackLabel | translate}}</span>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </ng-template>-->
+<!--                        </ng-container>-->
+
+<!--                        <ng-template #printTmpl>-->
+<!--                            <div class="print-panel__icon">-->
+<!--                                <img src="assets/images/payment_success.png?v={{env.version}}" alt="file">-->
+<!--                            </div>-->
+<!--                        </ng-template>-->

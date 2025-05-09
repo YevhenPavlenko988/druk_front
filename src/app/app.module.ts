@@ -9,7 +9,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {environment} from '../environments/environment';
 import {routes} from './app.routes';
 import {LayoutModule} from './$core/layout/layout.module';
-import {LanguageService} from './$core/language.service';
+import {LanguageService} from './$core/services/language.service';
 import {AppComponent} from './app.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {

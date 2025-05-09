@@ -3,14 +3,20 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateService} from '@ngx-translate/core';
 import {getTranslateModule} from '../../testing/mockTranslateModule';
 import {
-    HEADER_STEP_FILES_LABEL,
-    HEADER_STEP_PAYMENT_LABEL,
-    HEADER_STEP_PRINT_LABEL,
-    HEADER_TITLE_LABEL
-} from './consts';
+    PRINT_FAIL_BTN_AGAIN_LABEL,
+    PRINT_FAIL_BTN_BACK_LABEL,
+    PRINT_FAIL_TEXT_LABEL,
+    PRINT_FAIL_TITLE_LABEL,
+    PRINT_PRINTING_BTN_MORE_LABEL,
+    PRINT_PRINTING_TEXT_LABEL,
+    PRINT_PRINTING_TITLE_LABEL,
+    PRINT_SUCCESS_BTN_PRINT_LABEL,
+    PRINT_SUCCESS_TEXT_LABEL,
+    PRINT_SUCCESS_TITLE_LABEL
+} from "./labels";
 
 
-describe('core#translates', () => {
+describe('print#translates', () => {
     let translateService: TranslateService;
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -25,16 +31,24 @@ describe('core#translates', () => {
     }));
 
     for (const key of [
-        HEADER_TITLE_LABEL,
-        HEADER_STEP_FILES_LABEL,
-        HEADER_STEP_PAYMENT_LABEL,
-        HEADER_STEP_PRINT_LABEL,
+        PRINT_SUCCESS_TITLE_LABEL,
+        PRINT_SUCCESS_TEXT_LABEL,
+        PRINT_SUCCESS_BTN_PRINT_LABEL,
+
+        PRINT_FAIL_TITLE_LABEL,
+        PRINT_FAIL_TEXT_LABEL,
+        PRINT_FAIL_BTN_AGAIN_LABEL,
+        PRINT_FAIL_BTN_BACK_LABEL,
+
+        PRINT_PRINTING_TITLE_LABEL,
+        PRINT_PRINTING_TEXT_LABEL,
+        PRINT_PRINTING_BTN_MORE_LABEL,
     ]) {
         it(`should be valid translate by "${key}"`, () => {
             expect(key).not.toBeNull();
             const consoleError = spyOn(console, 'error').and.callThrough();
             expect(translateService.instant(key)).not.toEqual(key);
             expect(consoleError).not.toHaveBeenCalled();
-        });
+        })
     }
 });
