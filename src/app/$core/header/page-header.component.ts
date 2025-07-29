@@ -1,16 +1,21 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
-    Input,
+    DestroyRef,
     OnDestroy,
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import {environment} from '../../../environments/environment';
-import {HEADER_TITLE_LABEL, STEPS_DETAILS} from '../consts';
+import {HEADER_STEP_LABEL, STEPS_COUNT, STEPS_DETAILS} from '../consts';
 import {SharedModule} from '../../shared.module';
-import {StepsEnum} from './StepsEnum';
-import {Step} from './Step';
+import {StepService} from '../steps/step.service';
+import {StepsComponent} from '../steps/steps.component';
+import {StepsEnum} from '../steps/StepsEnum';
+import {Step} from '../steps/Step';
 import {ICONS} from '../icons';
 
 
@@ -22,37 +27,51 @@ import {ICONS} from '../icons';
     host: {
         'class': 'pg-header',
     },
-    imports: [SharedModule],
+    imports: [SharedModule, StepsComponent],
     standalone: true,
 })
 export class PageHeaderComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
-
-    readonly titleLabel = HEADER_TITLE_LABEL;
-
     readonly env = environment;
-    readonly steps: Array<Step> = STEPS_DETAILS;
+    readonly totalSteps = STEPS_COUNT;
 
-    @Input() step: StepsEnum = StepsEnum.adding;
+    readonly stepLabel = HEADER_STEP_LABEL;
 
-    get isPayment() {
-        return this.step === StepsEnum.payment;
-    }
+    isTablet: boolean;
+    step: Step;
+    stepType: StepsEnum;
 
-    get isPrinting() {
-        return this.step === StepsEnum.printing;
+    constructor(private breakpointObserver: BreakpointObserver,
+                private destroyRef: DestroyRef,
+                private cd: ChangeDetectorRef,
+                private stepService: StepService) {
+        if (environment.log.debug) {
+            console.log('PageHeaderComponent constructor invoked.');
+        }
     }
 
     ngOnInit() {
+        this.breakpointObserver
+            .observe(['(max-width: 992px)'])
+            .subscribe((state: BreakpointState) => {
+                if (state.matches) {
+                    this.isTablet = true;
+                    this.cd.markForCheck();
+                } else {
+                    this.isTablet = false;
+                    this.cd.markForCheck();
+                }
+            });
+
+        this.stepService.stepTypeEvent.pipe(
+            takeUntilDestroyed(this.destroyRef),
+        ).subscribe(r => {
+            this.stepType = r;
+            this.step = STEPS_DETAILS.find(x => x.code == this.stepType);
+            this.cd.markForCheck();
+        });
     }
 
     ngOnDestroy() {
-    }
-
-    isCompleted(code: StepsEnum): boolean {
-        return (
-            (code === StepsEnum.adding && (this.isPayment || this.isPrinting)) ||
-            (code === StepsEnum.payment && this.isPrinting)
-        );
     }
 }

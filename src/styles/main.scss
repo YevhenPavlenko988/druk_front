@@ -59,6 +59,7 @@ body { margin: 0; font-family: "Geologica", sans-serif; }
 // Components
 @import 'components/layout';
 @import 'components/header';
+@import 'components/steps';
 
 //
 // Elements
@@ -71,6 +72,7 @@ body { margin: 0; font-family: "Geologica", sans-serif; }
 @import 'addons/addon--dialog';
 @import 'addons/addon--toggle';
 @import 'addons/addon--notify';
+@import 'addons/addon--checkbox';
 
 //
 // Pages

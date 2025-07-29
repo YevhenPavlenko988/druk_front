@@ -4,8 +4,18 @@
 }
 
 .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: #{$brand--bg};
+
+    padding: 0 16px;
+
+    .mdc-dialog__surface {
+        --mdc-dialog-container-shape: 16px;
+
+        border: $border-width $border-style $white-12;
+    }
+
     .mdc-dialog__title {
-        --mdc-dialog-subhead-color: #{$black-100};
+        --mdc-dialog-subhead-color: #{$white-100};
         --mdc-dialog-subhead-font: "Geologica", sans-serif;
         --mdc-dialog-subhead-size: #{$font-size-20};
         --mdc-dialog-subhead-weight: #{$font--bold};
@@ -20,7 +30,7 @@
     }
 
     .mdc-dialog__content {
-        --mdc-dialog-supporting-text-color: #{$black-100};
+        --mdc-dialog-supporting-text-color: #{$white-64};
 
         text-align: center;
     }
@@ -44,4 +54,10 @@
 .mat-mdc-dialog-actions {
     padding: var(--mat-dialog-actions-padding, 8px);
     justify-content: var(--mat-dialog-actions-alignment, start);
+}
+
+@include media-breakpoint-down(xs) {
+    .mat-mdc-dialog-container {
+        --mdc-dialog-supporting-text-size: #{$font-size-15};
+    }
 }

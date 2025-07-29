@@ -15,6 +15,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 const modules = [
@@ -34,6 +35,7 @@ const modules = [
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatCheckboxModule,
 ];
 
 @NgModule({

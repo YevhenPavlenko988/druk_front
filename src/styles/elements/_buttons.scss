@@ -74,7 +74,7 @@
     border-radius: $btn--border-radius;
 
     &:hover {
-        background: $blue-light;
+        background: $blue-dark;
     }
 
     &.disabled, &[disabled] {
@@ -88,7 +88,7 @@
     border-radius: $btn--border-radius;
 
     &:hover {
-        color: $blue-light;
+        color: $blue-dark;
     }
 
     &.disabled, &[disabled] {
@@ -97,26 +97,31 @@
 }
 
 .btn-transparent {
-    --mdc-circular-progress-active-indicator-color: #{$blue-main-40};
+    --mdc-circular-progress-active-indicator-color: #{$white-64};
 
     background: transparent;
-    color: $blue-main;
-    border: $border-width $border-style $blue-main;
+    color: $white-100;
+    border: $border-width $border-style $white-24;
     border-radius: $btn--border-radius;
 
     &:hover {
-        color: $blue-light;
-        border-color: $blue-light;
+        background: $white-08;
     }
 
     &.disabled, &[disabled] {
-        color: $blue-main-40;
-        border-color: $blue-main-40;
+        color: $white-64;
+        border-color: $white-12;
     }
 }
 
 @include media-breakpoint-down(hd) {
     .btn--44 {
         min-width: $btn--width-min;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .btn{
+        font-size: $btn--font-size-min;
     }
 }

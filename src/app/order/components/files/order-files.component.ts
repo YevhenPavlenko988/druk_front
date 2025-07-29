@@ -57,7 +57,7 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
     readonly env = environment;
 
     @Input({transform: booleanAttribute}) loading: boolean;
-    // submitted: boolean;
+    @Input({transform: booleanAttribute}) submittedOrder: boolean;
     @Input() files: Array<FileDTOView>;
     @Input() settingsFormArray: FormArray<FormGroup>;
     @Output() fileUploaded = new EventEmitter<File>();
@@ -65,7 +65,7 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
     @Output() fileChanged = new EventEmitter();
 
     get isDisabled(): boolean {
-        return this.loading;
+        return this.loading || this.submittedOrder;
     }
 
     constructor(private cd: ChangeDetectorRef,) {

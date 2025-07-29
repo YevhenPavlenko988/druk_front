@@ -1,0 +1,28 @@
+.pg-steps {
+    display: flex;
+    align-items: center;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.steps__item {
+    width: 48px;
+    height: 4px;
+    background: $white-20;
+    border-radius: 16px;
+}
+
+.steps__item.active,
+.steps__item.completed {
+    background: $blue-main;
+}
+
+@include media-breakpoint-down(xxs) {
+    .steps__item {
+        width: 44px;
+    }
+}

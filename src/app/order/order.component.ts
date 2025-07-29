@@ -12,8 +12,20 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {EMPTY, switchMap, take} from 'rxjs';
+import {mapPrinter} from '../$core/transform/mapPrinter';
+import {mapFile} from './transform/mapFile';
+import {environment} from '../../environments/environment';
+import {APP_ROUTES} from '../app.routes';
+import {COMMON_ERROR_LABEL} from '../$core/consts';
+import {COPIES_COUNT, FORM_ID, PRINT_TYPE, ROUTE_PRINTER_ID} from './consts';
+import {
+    ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,
+    ORDER_LOCATION_AVAILABLE_UNTIL_LABEL,
+    ORDER_LOCATION_TITLE_LABEL,
+} from './labels';
 import {SharedModule} from '../shared.module';
 import {NotifyService} from '../$core/services/notify.service';
+import {StepService} from '../$core/steps/step.service';
 import {PrinterService} from '../$core/services/printer.service';
 import {FilesService} from './services/files.service';
 import {OrderService} from './services/order.service';
@@ -21,19 +33,6 @@ import {OrderFilesComponent} from './components/files/order-files.component';
 import {OrderSummaryComponent} from './components/summary/order-summary.component';
 import {DeleteFileDialogComponent} from './dialogs/delete-file-dialog/delete-file-dialog.component';
 import {PageHeaderComponent} from '../$core/header/page-header.component';
-import {mapPrinter} from '../$core/transform/mapPrinter';
-import {mapFile} from './transform/mapFile';
-import {environment} from '../../environments/environment';
-import {APP_ROUTES} from '../app.routes';
-import {COMMON_ERROR_LABEL} from '../$core/consts';
-import {
-    ORDER_LOCATION_AVAILABLE_LABEL,
-    ORDER_LOCATION_AVAILABLE_SHEETS_LABEL,
-    ORDER_LOCATION_SHEETS_LABEL,
-    ORDER_LOCATION_TITLE_LABEL,
-} from './labels';
-import {COPIES_COUNT, FORM_ID, PRINT_TYPE, ROUTE_PRINTER_ID} from './consts';
-import {ICONS} from '../$core/icons';
 import {PrinterDTOView} from '../$core/models/PrinterDTOView';
 import {FileDTOView} from './models/FileDTOView';
 import {DeleteFileDialogOptions, DeleteFileDialogResult} from './dialogs/typing';
@@ -42,6 +41,8 @@ import {SubOrderDTO} from './models/SubOrderDTO';
 import {PrintTypeEnum} from './models/PrintTypeEnum';
 import {Price} from './models/Price';
 import {Cost} from './models/Cost';
+import {StepsEnum} from '../$core/steps/StepsEnum';
+import {ICONS} from '../$core/icons';
 
 
 @Component({
@@ -59,9 +60,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
     // labels
     readonly locationTitleLabel = ORDER_LOCATION_TITLE_LABEL;
-    readonly availableLabel = ORDER_LOCATION_AVAILABLE_LABEL;
+    readonly availableUntilLabel = ORDER_LOCATION_AVAILABLE_UNTIL_LABEL;
     readonly availableSheetsLabel = ORDER_LOCATION_AVAILABLE_SHEETS_LABEL;
-    readonly sheetsLabel = ORDER_LOCATION_SHEETS_LABEL;
 
     loading: boolean;
     loadingFile: boolean;
@@ -79,6 +79,7 @@ export class OrderComponent implements OnInit, OnDestroy {
                 private destroyRef: DestroyRef,
                 private dialog: MatDialog,
                 private notify: NotifyService,
+                private stepService: StepService,
                 private printerService: PrinterService,
                 private filesService: FilesService,
                 private orderService: OrderService) {
@@ -94,11 +95,14 @@ export class OrderComponent implements OnInit, OnDestroy {
             next: (params: Params) => {
                 this.printerId = params[ROUTE_PRINTER_ID];
                 this.loadPrinterInfo(this.printerId);
-            }
+            },
         });
+
+        this.stepService.stepTypeEvent.next(StepsEnum.adding);
     }
 
     ngOnDestroy() {
+        this.stepService.reset();
     }
 
     loadPrinterInfo(id: string) {
@@ -210,8 +214,8 @@ export class OrderComponent implements OnInit, OnDestroy {
         const subOrdersArray = this.buildSubOrdersArray(this.fileList);
         const model: OrderCreateDTO = {
             printerId: this.printerId,
-            subOrders: subOrdersArray
-        }
+            subOrders: subOrdersArray,
+        };
         this.orderService.createOrder(model).pipe(
             switchMap(order => {
                 if (!order) {
@@ -220,7 +224,7 @@ export class OrderComponent implements OnInit, OnDestroy {
                 return this.orderService.getPaymentForm(order.id);
             }),
             take(1),
-            takeUntilDestroyed(this.destroyRef)
+            takeUntilDestroyed(this.destroyRef),
         ).subscribe({
             next: (htmlFormString) => {
                 const formContainer = document.createElement('div');
@@ -241,7 +245,7 @@ export class OrderComponent implements OnInit, OnDestroy {
                 }
                 this.notify.error(COMMON_ERROR_LABEL);
                 done();
-            }
+            },
         });
     }
 
@@ -249,7 +253,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         return (fileArray || []).map(x => ({
             fileId: x.id,
             copiesCount: x.$copiesCount,
-            printType: x.$printType
+            printType: x.$printType,
         }));
     }
 
@@ -281,7 +285,7 @@ export class OrderComponent implements OnInit, OnDestroy {
             singleCount: singleCount,
             doubleCount: doubleCount,
             totalCost: totalPrice + serviceFee,
-        }
+        };
     }
 
     setPrices(): Price {
@@ -290,6 +294,6 @@ export class OrderComponent implements OnInit, OnDestroy {
             serviceFee: serviceFee,
             singlePrice: priceOneSide,
             doublePrice: priceDuplex,
-        }
+        };
     }
 }

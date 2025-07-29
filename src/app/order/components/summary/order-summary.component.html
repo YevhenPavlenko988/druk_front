@@ -2,30 +2,30 @@
 <div class="summary">
     <div class="summary-details">
         <div class="summary-details__item">
-            <div class="label">{{singleLabel | translate}}</div>
+            <div>{{singleLabel | translate}}</div>
             <div>{{cost?.singleCount || 0}} x {{(price?.singlePrice || 0) | number: decimalPattern}} ₴</div>
         </div>
         <div class="summary-details__item">
-            <div class="label">{{doubleLabel | translate}}</div>
+            <div>{{doubleLabel | translate}}</div>
             <div>{{cost?.doubleCount || 0}} x {{(price?.doublePrice || 0) | number: decimalPattern}} ₴</div>
         </div>
         <div class="summary-details__item">
-            <div class="label">{{commissionLabel | translate}}</div>
+            <div>{{commissionLabel | translate}}</div>
             <div>{{(price?.serviceFee || 0) | number: decimalPattern}} ₴</div>
         </div>
     </div>
     <div class="summary-total">
-        <div class="label">{{totalLabel | translate}}</div>
+        <div>{{totalLabel | translate}}</div>
         <div>{{(cost?.totalCost || 0) | number: decimalPattern}} ₴</div>
     </div>
 </div>
 
 <button id="btnCreateOrder" type="button"
-        class="btn btn--44 btn-blue"
+        class="btn btn--44 btn-blue summary-btn"
         (click)="onCreateOrder()"
         [disabled]="isDisabled">
     <ng-container *ngIf="!submitted">
-        <mat-icon [svgIcon]="ICONS.payment"></mat-icon>
+<!--        <mat-icon [svgIcon]="ICONS.payment"></mat-icon>-->
         <span>{{btnCreateOrderLabel | translate}}</span>
     </ng-container>
     <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>

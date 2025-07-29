@@ -1,4 +1,5 @@
 export enum ICONS {
+    add_file = 'add_file',
     arrow_down = 'arrow_down',
     arrow_left = 'arrow_left',
     clip = 'clip',
@@ -7,11 +8,18 @@ export enum ICONS {
     document = 'document',
     done = 'done',
     files = 'files',
+    globe = 'globe',
     inbox = 'inbox',
     location = 'location',
     logo = 'logo',
+    logo_small = 'logo_small',
+    menu = 'menu',
     minus = 'minus',
     payment = 'payment',
+    payment_success = 'payment_success',
     play= 'play',
-    plus = 'plus'
+    plus = 'plus',
+    printer = 'printer',
+    printing = 'printing',
+    upload = 'upload'
 }

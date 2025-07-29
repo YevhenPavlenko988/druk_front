@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, tap} from 'rxjs';
+import {Observable, of, tap} from 'rxjs';
 import {joinUrl} from '../../$core/utils/joinUrl';
 import {environment} from '../../../environments/environment';
 import {PrintRequestDTO} from '../models/PrintRequestDTO';
@@ -18,6 +18,8 @@ export class PrintService {
     }
 
     printOrder(model: PrintRequestDTO): Observable<string> {
+        // return of('done');
+
         const url: string = joinUrl(environment.apiUrl, API_URL_PRINT_ORDER);
         if (environment.log.debug) {
             console.log(`POST ${url}`, model);
