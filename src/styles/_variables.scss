@@ -42,11 +42,10 @@ $brand--bg-40: rgb(238, 242, 248, 0.4); // #EEF2F8
 // -------------------------------------
 
 // Fonts
-$font-family: 'Geologica';  // sans-serif;
+$font-family: 'Inter';  // sans-serif; Geologica
 //
-$font-size-32: 32px;
-$font-size-28: 28px;
 $font-size-24: 24px;
+$font-size-22: 22px;
 $font-size-20: 20px;
 $font-size-18: 18px;
 $font-size-16: 16px;
@@ -61,9 +60,8 @@ $font--medium: 500;
 $font--regular: 400;
 $font--light: 300;
 //
-$font--32-line-height: 40px;
-$font--28-line-height: 34px;
 $font--24-line-height: 30px;
+$font--22-line-height: 28px;
 $font--20-line-height: 26px;
 $font--18-line-height: 24px;
 $font--16-line-height: 22px;
@@ -159,6 +157,7 @@ $icon-size-32: 32px;
 $dialog--indent: 24px;
 $dialog--indent--tablet: 32px;
 $dialog--indent--mob: 16px;
+$dialog--shape: 16px;
 $dialog-title--btn-size: 32px;
 $dialog-title--btn-size--mob: 40px;
 // -------------------------------------

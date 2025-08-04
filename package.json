@@ -1,5 +1,5 @@
 {
-    "name": "druk",
+    "name": "Druk2go",
     "version": "1.0.0",
     "description": "Print service for customers",
     "private": true,
@@ -27,6 +27,7 @@
         "@angular/platform-browser-dynamic": "^17.0.0",
         "@angular/router": "^17.0.0",
         "@fontsource/geologica": "^5.2.5",
+        "@fontsource/inter": "^5.2.6",
         "@ngx-translate/core": "^16.0.4",
         "@ngx-translate/http-loader": "^16.0.1",
         "pdfjs-dist": "^5.1.91",

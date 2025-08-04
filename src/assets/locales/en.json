@@ -28,7 +28,7 @@
             "title": "Files",
             "btnAdd": "Add files",
             "direction": {
-                "title": "Add or drag & drop files to print",
+                "title": "Add files to print",
                 "format": "Supporting formats: .pdf, .png, .jpg, .txt, .doc, .docx, .xls, .xlsx, .ppt, .pptx",
                 "size": "Size: up to 50Mb"
             },

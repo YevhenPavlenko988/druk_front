@@ -163,6 +163,7 @@ export class PrintComponent implements OnInit, OnDestroy {
         ).subscribe({
             next: (r) => {
                 // todo show some notify
+                // todo "Printer is offline" is not an error!
                 this.stepService.stepTypeEvent.next(StepsEnum.printing);
                 done();
             },

@@ -51,11 +51,5 @@
 }
 
 .summary-btn {
-    align-self: flex-end;
-}
-
-@include media-breakpoint-down(lg) {
-    .summary-btn {
-        width: 100%;
-    }
+    //align-self: flex-end;
 }

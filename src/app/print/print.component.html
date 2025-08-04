@@ -21,7 +21,7 @@
             <mat-icon [svgIcon]="ICONS.payment_success"></mat-icon>
         </div>
         <div class="print-panel__text">
-            <h4>{{successTitleLabel | translate}}</h4>
+            <h2>{{successTitleLabel | translate}}</h2>
             <p>{{successTextLabel | translate}}</p>
         </div>
         <div class="print-panel__btns">
@@ -40,10 +40,10 @@
 
     <ng-template #failTmp>
         <div class="print-panel__icon">
-            <mat-icon [svgIcon]="ICONS.payment_success"></mat-icon>
+            <mat-icon [svgIcon]="ICONS.payment_fail"></mat-icon>
         </div>
         <div class="print-panel__text">
-            <h4>{{failTitleLabel | translate}}</h4>
+            <h2>{{failTitleLabel | translate}}</h2>
             <p>{{failTextLabel | translate}}</p>
         </div>
         <div class="print-panel__btns">
@@ -52,7 +52,7 @@
                     (click)="onPayAgain()"
                     [disabled]="isDisabled">
                 <ng-container *ngIf="!submitted">
-                    <mat-icon [svgIcon]="ICONS.payment"></mat-icon>
+                    <mat-icon [svgIcon]="ICONS.retry"></mat-icon>
                     <span>{{btnAgainLabel | translate}}</span>
                 </ng-container>
                 <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
@@ -73,7 +73,7 @@
         <mat-icon [svgIcon]="ICONS.printing"></mat-icon>
     </div>
     <div class="print-panel__text">
-        <h4>{{printingTitleLabel | translate}}</h4>
+        <h2>{{printingTitleLabel | translate}}</h2>
         <p>{{printingTextLabel | translate}}</p>
     </div>
     <div class="print-panel__btns">

@@ -7,6 +7,7 @@ export enum ICONS {
     cross = 'cross',
     document = 'document',
     done = 'done',
+    favicon = 'favicon',
     files = 'files',
     globe = 'globe',
     inbox = 'inbox',
@@ -16,10 +17,12 @@ export enum ICONS {
     menu = 'menu',
     minus = 'minus',
     payment = 'payment',
+    payment_fail = 'payment_fail',
     payment_success = 'payment_success',
     play= 'play',
     plus = 'plus',
     printer = 'printer',
     printing = 'printing',
+    retry = 'retry',
     upload = 'upload'
 }

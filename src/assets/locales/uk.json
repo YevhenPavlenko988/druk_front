@@ -1,11 +1,11 @@
 {
     "common": {
         "header": {
-            "step": "Step",
+            "step": "Крок",
             "title": {
-                "files": "Place an order",
-                "payment": "Print an order",
-                "print": "Print an order"
+                "files": "Додавання файлів",
+                "payment": "Друк файлів",
+                "print": "Друк файлів"
             }
         }
     },
@@ -20,52 +20,52 @@
     },
     "order": {
         "location": {
-            "title": "Location",
-            "availableUntil": "Available until:",
-            "availableSheets": "Sheets available:"
+            "title": "Локація",
+            "availableUntil": "Працює до:",
+            "availableSheets": "Папір у наявності:"
         },
         "files": {
-            "title": "Files",
-            "btnAdd": "Add files",
+            "title": "Файли",
+            "btnAdd": "Завантажити файли",
             "direction": {
-                "title": "Add or drag & drop files to print",
-                "format": "Supporting formats: .pdf, .png, .jpg, .txt, .doc, .docx, .xls, .xlsx, .ppt, .pptx",
+                "title": "Завантажте файли для друку",
+                "format": "Підтримуємо формати: .pdf, .png, .jpg, .txt, .doc, .docx, .xls, .xlsx, .ppt, .pptx",
                 "size": "Size: up to 50Mb"
             },
-            "pages": "Pages:",
-            "sides": "Double-sided",
+            "pages": "Сторінок:",
+            "sides": "З обох сторін",
             "delete": {
-                "title": "Delete file",
-                "content": "Are you sure you want to delete the file?",
-                "btnDelete": "Delete",
-                "btnCancel": "Cancel"
+                "title": "Видалити файл",
+                "content": "Ви впевнені, що хочете видалити цей файл?",
+                "btnDelete": "Видалити",
+                "btnCancel": "Скасувати"
             }
         },
         "summary": {
-            "title": "Summary",
-            "single": "B&W single-sided",
-            "double": "B&W double-sided",
-            "commission": "Service commission",
-            "total": "Total cost",
-            "btnCreate": "Go to payment"
+            "title": "Вартість",
+            "single": "B&W односторонні",
+            "double": "B&W двосторонні",
+            "commission": "Комісія сервіса",
+            "total": "Загальна вартість",
+            "btnCreate": "Перейти до оплати"
         }
     },
     "print": {
         "success": {
-            "title": "The payment was successful",
-            "text": "You can start printing as soon as you are ready",
-            "btnPrint": "Start printing"
+            "title": "Платіж пройшов успішно",
+            "text": "Ви можете розпочати друк, щойно будете готові",
+            "btnPrint": "Розпочати друк"
         },
         "fail": {
-            "title": "Something went wrong",
-            "text": "Payment has not been made. Try again or contact customer support",
-            "btnAgain": "Try again",
-            "btnBack": "Go back"
+            "title": "Не вдалося завершити оплату!",
+            "text": "Можливо, проблема з банком або інтернет-з’єднанням. Спробуйте повторити.",
+            "btnAgain": "Повторити оплату",
+            "btnBack": "На головну"
         },
         "printing": {
-            "title": "Wait for the end of printing",
-            "text": "If you have any questions or something went wrong, please contact",
-            "btnMore": "Print more files"
+            "title": "Дочекайтесь кінця друку",
+            "text": "Ваш документ зараз друкується. Зачекайте, будь ласка декіліка хвилин",
+            "btnMore": "Друкувати ще"
         }
     }
 }

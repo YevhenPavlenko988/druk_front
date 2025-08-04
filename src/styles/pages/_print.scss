@@ -43,7 +43,7 @@
   font-weight: $font--light;
   text-align: center;
 
-  h4 {
+  h2 {
     color: $white-100;
   }
 }
@@ -52,7 +52,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 100%;
 }
 
 .print-loading {

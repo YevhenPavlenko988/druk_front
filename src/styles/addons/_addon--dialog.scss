@@ -9,14 +9,14 @@
     padding: 0 16px;
 
     .mdc-dialog__surface {
-        --mdc-dialog-container-shape: 16px;
+        --mdc-dialog-container-shape: #{$dialog--shape};
 
         border: $border-width $border-style $white-12;
     }
 
     .mdc-dialog__title {
         --mdc-dialog-subhead-color: #{$white-100};
-        --mdc-dialog-subhead-font: "Geologica", sans-serif;
+        --mdc-dialog-subhead-font: "Inter", sans-serif;
         --mdc-dialog-subhead-size: #{$font-size-20};
         --mdc-dialog-subhead-weight: #{$font--bold};
         --mdc-dialog-subhead-line-height: #{$font--20-line-height};
