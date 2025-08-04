@@ -48,12 +48,13 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     @Input({transform: booleanAttribute}) submitted: boolean;
     @Input() price: Price;
     @Input() cost: Cost;
+    @Input() filesLength: number;
     @Output() createOrder = new EventEmitter();
 
     decimalPattern = DECIMAL_PATTERN;
 
     get isDisabled(): boolean {
-        return this.submitted;
+        return !this.filesLength || this.submitted;
     }
 
     ngOnInit() {
@@ -63,7 +64,6 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     }
 
     onCreateOrder() {
-        // block add file when pressed
         this.createOrder.emit();
     }
 }

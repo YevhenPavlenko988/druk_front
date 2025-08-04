@@ -3,10 +3,10 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateService} from '@ngx-translate/core';
 import {getTranslateModule} from '../../testing/mockTranslateModule';
 import {
-    HEADER_STEP_FILES_LABEL,
-    HEADER_STEP_PAYMENT_LABEL,
-    HEADER_STEP_PRINT_LABEL,
-    HEADER_TITLE_LABEL
+    HEADER_STEP_LABEL,
+    HEADER_TITLE_FILES_LABEL,
+    HEADER_TITLE_PAYMENT_LABEL,
+    HEADER_TITLE_PRINT_LABEL,
 } from './consts';
 
 
@@ -25,10 +25,10 @@ describe('core#translates', () => {
     }));
 
     for (const key of [
-        HEADER_TITLE_LABEL,
-        HEADER_STEP_FILES_LABEL,
-        HEADER_STEP_PAYMENT_LABEL,
-        HEADER_STEP_PRINT_LABEL,
+        HEADER_STEP_LABEL,
+        HEADER_TITLE_FILES_LABEL,
+        HEADER_TITLE_PAYMENT_LABEL,
+        HEADER_TITLE_PRINT_LABEL,
     ]) {
         it(`should be valid translate by "${key}"`, () => {
             expect(key).not.toBeNull();

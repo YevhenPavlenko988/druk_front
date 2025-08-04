@@ -1,9 +1,20 @@
 .layout-footer {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
     //min-height: $footer--height;
-    background: $white-100;
+    background: $brand--bg;
+
+    &:before {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        top: 0;
+        background-color: $white-12;
+        z-index: 1;
+    }
 }
 
 .footer__content {

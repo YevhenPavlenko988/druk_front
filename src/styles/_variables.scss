@@ -2,15 +2,24 @@
 //
 // white color
 $white-100: rgb(255, 255, 255); // #FFFFFF;
+$white-80: rgb(255, 255, 255, 0.8);
+$white-64: rgb(255, 255, 255, 0.64);
+$white-48: rgb(255, 255, 255, 0.48);
+$white-24: rgb(255, 255, 255, 0.24);
+$white-20: rgb(255, 255, 255, 0.2);
+$white-12: rgb(255, 255, 255, 0.12);
+$white-08: rgb(255, 255, 255, 0.08);
+$white-06: rgb(255, 255, 255, 0.06);
+$white-02: rgb(255, 255, 255, 0.02);
 //
 // black color
 $black-100: rgb(23, 27, 33); // #1B1B1E
 $black-80: rgb(23, 27, 33, 0.8); // #1B1B1E
 //
 // blue color
-$blue-main: rgb(18, 101, 168); // #1265A8
-$blue-main-40: rgba(18, 101, 168, 0.4);
-$blue-light: #3186CB; // #3186CB
+$blue-main: rgb(0, 102, 255); // #0066FF #1265A8
+$blue-main-40: rgba(0, 102, 255, 0.4);
+$blue-dark: rgb(0, 86, 216);; // #0056D8 #3186CB
 //
 // gray color
 $gray: rgb(164, 170, 177); // #A4AAB1
@@ -28,16 +37,15 @@ $technical-red: rgb(255, 41, 67);
 //
 // brand colors
 $brand--color: $blue-main;
-$brand--bg: rgb(238, 242, 248); // #EEF2F8
+$brand--bg: rgba(9, 10, 17); // #EEF2F8 #090A11
 $brand--bg-40: rgb(238, 242, 248, 0.4); // #EEF2F8
 // -------------------------------------
 
 // Fonts
-$font-family: 'Geologica';  // sans-serif;
+$font-family: 'Inter';  // sans-serif; Geologica
 //
-$font-size-32: 32px;
-$font-size-28: 28px;
 $font-size-24: 24px;
+$font-size-22: 22px;
 $font-size-20: 20px;
 $font-size-18: 18px;
 $font-size-16: 16px;
@@ -52,9 +60,8 @@ $font--medium: 500;
 $font--regular: 400;
 $font--light: 300;
 //
-$font--32-line-height: 40px;
-$font--28-line-height: 34px;
 $font--24-line-height: 30px;
+$font--22-line-height: 28px;
 $font--20-line-height: 26px;
 $font--18-line-height: 24px;
 $font--16-line-height: 22px;
@@ -67,6 +74,7 @@ $font--10-line-height: 16px;
 
 // Borders
 $border-width: 1px;
+$border-thin-width: 0.8px;
 $border-style: solid;
 // -------------------------------------
 
@@ -149,6 +157,7 @@ $icon-size-32: 32px;
 $dialog--indent: 24px;
 $dialog--indent--tablet: 32px;
 $dialog--indent--mob: 16px;
+$dialog--shape: 16px;
 $dialog-title--btn-size: 32px;
 $dialog-title--btn-size--mob: 40px;
 // -------------------------------------
@@ -184,11 +193,12 @@ $menu-item--bg--hover: $brand--bg;
 // -------------------------------------
 
 // Buttons
-$btn--font-size: $font-size-16;
-$btn--font-weight: $font--light;
+$btn--font-size: $font-size-15;
+$btn--font-size-min: $font-size-14;
+$btn--font-weight: $font--medium;
 $btn--height: 44px;
 $btn--width: 320px;
 $btn--width-min: 220px;
 $btn--icon-width: 44px;
-$btn--border-radius: 4px;
+$btn--border-radius: 8px;
 // -------------------------------------

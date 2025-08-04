@@ -1,28 +1,76 @@
 .layout-navbar {
-    --mat-toolbar-container-background-color: #{$white-100};
-    //--mat-toolbar-container-text-color: white;
+    --mat-toolbar-standard-height: 72px;
+    --mat-toolbar-container-background-color: #{$brand--bg};
+    --mat-toolbar-container-text-color: #{$white-100};
 
+    position: relative;
     display: flex;
     align-items: center;
     flex: 0 0 auto;
     width: 100%;
+
+    &:after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        bottom: 0;
+        background-color: $white-12;
+        z-index: 1;
+    }
 }
 
 .navbar-content {
     display: flex;
+    justify-content: space-between;
     width: 100%;
-    max-width: 1240px;
+    //max-width: 1240px;
     margin: 0 auto;
+    padding: 0 8px;
 }
 
-.navbar-content__btn {
-    height: 44px;
-    min-height: 44px;
-    min-width: 74px;
-    border-radius: 3px;
+.navbar-logo__btn {
+    height: 22px;
+    min-height: 22px;
+    min-width: 128px;
 
-    .navbar-content__btn-icon.mat-icon {
+    .navbar-logo__btn-icon.mat-icon {
         width: 100%;
         height: 100%;
+    }
+}
+
+.navbar-logo__btn-small {
+    height: 22px;
+    min-height: 22px;
+    min-width: 22px;
+
+    .navbar-logo__btn-icon.mat-icon {
+        width: 22px;
+        height: 100%;
+    }
+}
+
+.navbar-lang__btn {
+    span {
+        font-size: $font-size-14;
+    }
+
+    .mat-icon {
+        color: $gray-dark;
+    }
+}
+
+.navbar-menu__btn {
+
+}
+
+@include media-breakpoint-down(lg) {
+    .layout-navbar {
+        --mat-toolbar-standard-height: 64px;
+    }
+
+    .navbar-content {
+        padding: 0;
     }
 }

@@ -1,14 +1,17 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     OnDestroy,
     OnInit,
     ViewEncapsulation,
 } from '@angular/core';
 import {Router} from '@angular/router';
-import {SharedModule} from '../../../shared.module';
 import {environment} from '../../../../environments/environment';
 import {APP_ROUTES} from '../../../app.routes';
+import {SharedModule} from '../../../shared.module';
+import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
+import {StepsComponent} from '../../steps/steps.component';
 import {ICONS} from '../../icons';
 
 
@@ -20,19 +23,35 @@ import {ICONS} from '../../icons';
     host: {
         'class': 'layout-navbar',
     },
-    imports: [SharedModule],
+    imports: [SharedModule, StepsComponent],
     standalone: true,
 })
 export class NavbarComponent implements OnInit, OnDestroy {
     readonly ICONS = ICONS;
 
-    constructor(private router: Router,) {
+    lang = 'Eng';
+    isTablet: boolean;
+
+    constructor(private breakpointObserver: BreakpointObserver,
+                private router: Router,
+                private cd: ChangeDetectorRef) {
         if (environment.log.debug) {
             console.log('NavbarComponent constructor invoked.');
         }
     }
 
     ngOnInit() {
+        this.breakpointObserver
+            .observe(['(max-width: 992px)'])
+            .subscribe((state: BreakpointState) => {
+                if (state.matches) {
+                    this.isTablet = true;
+                    this.cd.markForCheck();
+                } else {
+                    this.isTablet = false;
+                    this.cd.markForCheck();
+                }
+            });
     }
 
     ngOnDestroy() {

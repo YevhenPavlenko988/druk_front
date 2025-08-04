@@ -15,11 +15,13 @@
             <div class="location-info">
                 <div class="location-info__item">
                     <mat-icon [svgIcon]="ICONS.clock"></mat-icon>
-                    {{availableLabel | translate}} {{printer?.schedule}}
+                    <span class="label">{{availableUntilLabel | translate}}</span>
+                    <span>{{printer?.schedule}}</span>
                 </div>
                 <div class="location-info__item {{printer?.$sheetsClass}}">
                     <mat-icon [svgIcon]="ICONS.inbox"></mat-icon>
-                    {{availableSheetsLabel | translate}} {{printer?.paperLeft}} {{sheetsLabel | translate}}
+                    <span class="label">{{availableSheetsLabel | translate}}</span>
+                    <span>{{printer?.paperLeft}}</span>
                 </div>
             </div>
         </div>
@@ -27,6 +29,7 @@
     <div class="order-content">
         <order-files [loading]="loadingFile"
                      [files]="fileList"
+                     [submittedOrder]="submittedOrder"
                      [settingsFormArray]="settingsFormArray"
                      (fileUploaded)="onFileUploaded($event)"
                      (fileDeleted)="onFileDeleted($event)"
@@ -35,6 +38,7 @@
         <order-summary [submitted]="submittedOrder"
                        [price]="price"
                        [cost]="cost"
+                       [filesLength]="fileList?.length"
                        (createOrder)="onOrderCreated()"></order-summary>
     </div>
 </div>

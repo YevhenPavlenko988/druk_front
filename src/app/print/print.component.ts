@@ -24,17 +24,18 @@ import {
     PRINT_PRINTING_TITLE_LABEL,
     PRINT_SUCCESS_BTN_PRINT_LABEL,
     PRINT_SUCCESS_TEXT_LABEL,
-    PRINT_SUCCESS_TITLE_LABEL
+    PRINT_SUCCESS_TITLE_LABEL,
 } from './labels';
 import {SharedModule} from '../shared.module';
 import {PageHeaderComponent} from '../$core/header/page-header.component';
 import {NotifyService} from '../$core/services/notify.service';
+import {StepService} from '../$core/steps/step.service';
 import {OrderService} from '../order/services/order.service';
 import {PrintService} from './services/print.service';
 import {OrderMainInfoDTO} from '../order/models/OrderMainInfoDTO';
 import {PrintRequestDTO} from './models/PrintRequestDTO';
 import {PaymentStatusEnum} from '../order/models/PaymentStatusEnum';
-import {StepsEnum} from '../$core/header/StepsEnum';
+import {StepsEnum} from '../$core/steps/StepsEnum';
 import {ICONS} from '../$core/icons';
 
 
@@ -68,7 +69,7 @@ export class PrintComponent implements OnInit, OnDestroy {
     loading: boolean;
     submitted: boolean;
     order: OrderMainInfoDTO;
-    step: StepsEnum = StepsEnum.payment;
+    stepType: StepsEnum;
 
     get isDisabled(): boolean {
         return this.loading || this.submitted;
@@ -84,7 +85,8 @@ export class PrintComponent implements OnInit, OnDestroy {
                 private destroyRef: DestroyRef,
                 private notify: NotifyService,
                 private orderService: OrderService,
-                private printService: PrintService,) {
+                private printService: PrintService,
+                private stepService: StepService) {
         if (environment.log.debug) {
             console.log('[PrintComponent] constructor loaded');
         }
@@ -96,11 +98,20 @@ export class PrintComponent implements OnInit, OnDestroy {
         ).subscribe({
             next: (params: Params) => {
                 this.loadOrderInfo(params[ROUTE_ORDER_ID]);
-            }
+            },
         });
+
+        this.stepService.stepTypeEvent.pipe(
+            takeUntilDestroyed(this.destroyRef),
+        ).subscribe(r => {
+            this.stepType = r;
+        });
+
+        this.stepService.stepTypeEvent.next(StepsEnum.payment);
     }
 
     ngOnDestroy() {
+        this.stepService.reset();
     }
 
     loadOrderInfo(id: string) {
@@ -130,6 +141,11 @@ export class PrintComponent implements OnInit, OnDestroy {
     }
 
     onPrintOrder() {
+        if (this.isDisabled) {
+            this.notify.error(COMMON_ERROR_LABEL);
+            return;
+        }
+
         this.submitted = true;
         this.cd.markForCheck();
         const done = () => {
@@ -139,7 +155,7 @@ export class PrintComponent implements OnInit, OnDestroy {
 
         const model: PrintRequestDTO = {
             orderId: this.order.id,
-            printerId: this.order.printerId
+            printerId: this.order.printerId,
         };
         this.printService.printOrder(model).pipe(
             take(1),
@@ -147,7 +163,8 @@ export class PrintComponent implements OnInit, OnDestroy {
         ).subscribe({
             next: (r) => {
                 // todo show some notify
-                this.step = StepsEnum.printing;
+                // todo "Printer is offline" is not an error!
+                this.stepService.stepTypeEvent.next(StepsEnum.printing);
                 done();
             },
             error: (err) => {
@@ -161,6 +178,10 @@ export class PrintComponent implements OnInit, OnDestroy {
     }
 
     onPayAgain() {
+        if (this.isDisabled) {
+            return;
+        }
+
         this.submitted = true;
         this.cd.markForCheck();
         const done = () => {
