@@ -4,7 +4,6 @@
     "compilerOptions": {
         "outDir": "./dist/out-tsc",
         "forceConsistentCasingInFileNames": true,
-//        "strict": true,
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
@@ -14,7 +13,7 @@
         "declaration": false,
         "experimentalDecorators": true,
         "resolveJsonModule": true,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "importHelpers": true,
         "target": "ES2022",
         "module": "ES2022",
