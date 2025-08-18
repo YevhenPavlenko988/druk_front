@@ -1,5 +1,6 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {noop} from 'rxjs';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
@@ -12,14 +13,13 @@ describe('DeleteFileDialogComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                TranslateModule.forRoot(),
-                HttpClientTestingModule,
-            ],
+            imports: [TranslateModule.forRoot()],
             providers: [
                 TranslateService,
                 {provide: MatDialogRef, useValue: {close: noop}},
                 {provide: MAT_DIALOG_DATA, useValue: {s3key: '1'}},
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
             ],
         }).compileComponents();
     }));

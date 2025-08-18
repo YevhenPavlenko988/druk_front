@@ -1,5 +1,6 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {ActivatedRoute} from '@angular/router';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TestActivatedRoute} from '../../testing/services/TestActivatedRoute';
@@ -12,13 +13,12 @@ describe('OrderComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                TranslateModule.forRoot(),
-                HttpClientTestingModule
-            ],
+            imports: [TranslateModule.forRoot()],
             providers: [
                 {provide: ActivatedRoute, useClass: TestActivatedRoute},
                 TranslateService,
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
             ],
         }).compileComponents();
     }));
