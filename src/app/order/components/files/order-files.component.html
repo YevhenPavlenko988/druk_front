@@ -1,84 +1,89 @@
-<h2>{{filesTitleLabel | translate}}</h2>
-<ng-container *ngIf="!files?.length; else filesTmpl">
+<h2>{{ filesTitleLabel | translate }}</h2>
+@if (!files?.length) {
     <div class="files-add">
         <div class="files-add-content">
             <div class="files-add__icon">
                 <mat-icon [svgIcon]="ICONS.add_file"></mat-icon>
             </div>
             <div class="files-add__text">
-                <h5>{{addDirectionLabel | translate}}</h5>
-                <p>{{addFormatLabel | translate}}</p>
+                <h5>{{ addDirectionLabel | translate }}</h5>
+                <p>{{ addFormatLabel | translate }}</p>
             </div>
             <div class="files-add__btn">
                 <ng-container *ngTemplateOutlet="addButtonTmpl"></ng-container>
             </div>
         </div>
     </div>
-</ng-container>
-
-<ng-template #filesTmpl>
+} @else {
     <div class="files">
-        <div *ngFor="let file of files; let i = index; trackBy: trackByFn" class="files-item">
-            <div class="files-item-info">
-                <div class="files-item__icon">
-                    <mat-icon [svgIcon]="ICONS.document"></mat-icon>
-                </div>
-                <div class="files-item__content">
-                    <h5>{{file.$name}}</h5>
-                    <span>{{pagesLabel | translate}} {{file.pagesCount}}</span>
-                </div>
-                <div class="files-item__delete">
-                    <button class="btn delete-btn" (click)="onDeleteFile(i)">
-                        <mat-icon [svgIcon]="ICONS.cross"></mat-icon>
-                    </button>
-                </div>
-            </div>
-            <div class="files-item-settings">
-                <form *ngIf="settingsFormArray" id="formSettings" autocomplete="off" novalidate
-                      [formGroup]="settingsFormArray.at(i)"
-                      class="files-item-form">
-<!--                    <mat-slide-toggle [formControlName]="printTypeField"-->
-<!--                                      [id]="printTypeField + '_' + i"-->
-<!--                                      hideIcon="true"-->
-<!--                                      (change)="changePrintType(file.id)">-->
-<!--                        {{sidesLabel | translate}}-->
-<!--                    </mat-slide-toggle>-->
-                    <mat-checkbox [id]="printTypeField + '_' + i"
-                                  [formControlName]="printTypeField"
-                                  (change)="changePrintType(file.id)">
-                        {{sidesLabel | translate}}
-                    </mat-checkbox>
-                    <div class="files-item-count">
-                        <button type="button" class="btn btn-icon files-item-count__btn"
-                                [disabled]="file.$copiesCount === minCopiesCount"
-                                (click)="decreaseCopies(file.id)">
-                            <mat-icon [svgIcon]="ICONS.minus"></mat-icon>
-                        </button>
-                        <input matInput type="number" readonly
-                               [formControlName]="copiesCountField" [id]="copiesCountField + '_' + i">
-                        <button type="button" class="btn btn-icon files-item-count__btn"
-                                [disabled]="file.$copiesCount === maxCopiesCount"
-                                (click)="increaseCopies(file.id)">
-                            <mat-icon [svgIcon]="ICONS.plus"></mat-icon>
+        @for (file of files; track file.id; let i = $index) {
+            <div class="files-item">
+                <div class="files-item-info">
+                    <div class="files-item__icon">
+                        <mat-icon [svgIcon]="ICONS.document"></mat-icon>
+                    </div>
+                    <div class="files-item__content">
+                        <h5>{{ file.$name }}</h5>
+                        <span>{{ pagesLabel | translate }} {{ file.pagesCount }}</span>
+                    </div>
+                    <div class="files-item__delete">
+                        <button class="btn delete-btn" (click)="onDeleteFile(i)">
+                            <mat-icon [svgIcon]="ICONS.cross"></mat-icon>
                         </button>
                     </div>
-                </form>
+                </div>
+                <div class="files-item-settings">
+                    @if (settingsFormArray) {
+                        <form id="formSettings" autocomplete="off" novalidate
+                              [formGroup]="settingsFormArray.at(i)"
+                              class="files-item-form">
+                            <!--                    <mat-slide-toggle [formControlName]="printTypeField"-->
+                            <!--                                      [id]="printTypeField + '_' + i"-->
+                            <!--                                      hideIcon="true"-->
+                            <!--                                      (change)="changePrintType(file.id)">-->
+                            <!--                        {{sidesLabel | translate}}-->
+                            <!--                    </mat-slide-toggle>-->
+                            <mat-checkbox [id]="printTypeField + '_' + i"
+                                          [formControlName]="printTypeField"
+                                          (change)="changePrintType(file.id)">
+                                {{ sidesLabel | translate }}
+                            </mat-checkbox>
+                            <div class="files-item-count">
+                                <button type="button" class="btn btn-icon files-item-count__btn"
+                                        [disabled]="file.$copiesCount === minCopiesCount"
+                                        (click)="decreaseCopies(file.id)">
+                                    <mat-icon [svgIcon]="ICONS.minus"></mat-icon>
+                                </button>
+                                <input matInput type="number" readonly
+                                       [formControlName]="copiesCountField" [id]="copiesCountField + '_' + i">
+                                <button type="button" class="btn btn-icon files-item-count__btn"
+                                        [disabled]="file.$copiesCount === maxCopiesCount"
+                                        (click)="increaseCopies(file.id)">
+                                    <mat-icon [svgIcon]="ICONS.plus"></mat-icon>
+                                </button>
+                            </div>
+                        </form>
+                    }
+                </div>
             </div>
-        </div>
+        }
         <ng-container *ngTemplateOutlet="addButtonTmpl"></ng-container>
     </div>
-</ng-template>
+}
+
 
 <ng-template #addButtonTmpl>
     <button id="btnAddFile" type="button"
             class="btn btn--44 btn-transparent"
             (click)="fileInput.click()"
             [disabled]="isDisabled">
-        <ng-container *ngIf="!loading">
+        @if (!loading) {
             <mat-icon [svgIcon]="ICONS.upload"></mat-icon>
-            <span>{{btnAddFileLabel | translate}}</span>
-        </ng-container>
-        <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+            <span>{{ btnAddFileLabel | translate }}</span>
+        }
+        @if (loading) {
+            <mat-spinner diameter="20"></mat-spinner>
+        }
         <input #fileInput type="file"
                hidden
                (change)="onAddFile(fileInput)"

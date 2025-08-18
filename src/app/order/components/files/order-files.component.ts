@@ -144,8 +144,4 @@ export class OrderFilesComponent implements OnInit, OnDestroy {
         return this.settingsFormArray.controls
             .find(fg => fg.get(FORM_ID)?.value === id) as FormGroup | undefined;
     }
-
-    trackByFn(file: FileDTOView | any) {
-        return file?.id;
-    }
 }

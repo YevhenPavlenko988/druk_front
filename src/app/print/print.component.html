@@ -1,71 +1,73 @@
 <pg-header></pg-header>
 <div class="print-content">
     <div class="print-panel">
-        <ng-container *ngIf="!loading; else loadingTmpl">
+        @if (!loading) {
             <div class="print-panel__content">
                 <ng-container *ngTemplateOutlet="stepType==='payment' ? paymentTmpl : printTmpl"></ng-container>
             </div>
-        </ng-container>
-
-        <ng-template #loadingTmpl>
+        } @else {
             <div class="print-loading">
                 <mat-spinner diameter="48"></mat-spinner>
             </div>
-        </ng-template>
+        }
+
     </div>
 </div>
 
 <ng-template #paymentTmpl>
-    <ng-container *ngIf="isSuccess; else failTmp">
+    @if (isSuccess) {
         <div class="print-panel__icon">
             <mat-icon [svgIcon]="ICONS.payment_success"></mat-icon>
         </div>
         <div class="print-panel__text">
-            <h2>{{successTitleLabel | translate}}</h2>
-            <p>{{successTextLabel | translate}}</p>
+            <h2>{{ successTitleLabel | translate }}</h2>
+            <p>{{ successTextLabel | translate }}</p>
         </div>
         <div class="print-panel__btns">
             <button id="btnPrint" type="button"
                     class="btn btn--44 btn-blue"
                     (click)="onPrintOrder()"
                     [disabled]="isDisabled">
-                <ng-container *ngIf="!submitted">
+                @if (!submitted) {
                     <mat-icon [svgIcon]="ICONS.printer"></mat-icon>
-                    <span>{{btnPrintLabel | translate}}</span>
-                </ng-container>
-                <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+                    <span>{{ btnPrintLabel | translate }}</span>
+                }
+                @if (submitted) {
+                    <mat-spinner diameter="20"></mat-spinner>
+                }
             </button>
         </div>
-    </ng-container>
-
-    <ng-template #failTmp>
+    } @else {
         <div class="print-panel__icon">
             <mat-icon [svgIcon]="ICONS.payment_fail"></mat-icon>
         </div>
         <div class="print-panel__text">
-            <h2>{{failTitleLabel | translate}}</h2>
-            <p>{{failTextLabel | translate}}</p>
+            <h2>{{ failTitleLabel | translate }}</h2>
+            <p>{{ failTextLabel | translate }}</p>
         </div>
         <div class="print-panel__btns">
             <button id="btnAgain" type="button"
                     class="btn btn--44 btn-blue"
                     (click)="onPayAgain()"
                     [disabled]="isDisabled">
-                <ng-container *ngIf="!submitted">
+                @if (!submitted) {
                     <mat-icon [svgIcon]="ICONS.retry"></mat-icon>
-                    <span>{{btnAgainLabel | translate}}</span>
-                </ng-container>
-                <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+                    <span>{{ btnAgainLabel | translate }}</span>
+                }
+                @if (submitted) {
+                    <mat-spinner diameter="20"></mat-spinner>
+                }
             </button>
             <button id="btnToAddFiles" type="button"
                     class="btn btn--44 btn-transparent"
                     (click)="goToOrder()"
                     [disabled]="isDisabled">
                 <mat-icon [svgIcon]="ICONS.arrow_left"></mat-icon>
-                <span>{{btnBackLabel | translate}}</span>
+                <span>{{ btnBackLabel | translate }}</span>
             </button>
         </div>
-    </ng-template>
+    }
+
 </ng-template>
 
 <ng-template #printTmpl>
@@ -73,8 +75,8 @@
         <mat-icon [svgIcon]="ICONS.printing"></mat-icon>
     </div>
     <div class="print-panel__text">
-        <h2>{{printingTitleLabel | translate}}</h2>
-        <p>{{printingTextLabel | translate}}</p>
+        <h2>{{ printingTitleLabel | translate }}</h2>
+        <p>{{ printingTextLabel | translate }}</p>
     </div>
     <div class="print-panel__btns">
         <button id="btnMore" type="button"
@@ -82,7 +84,7 @@
                 (click)="goToOrder()"
                 [disabled]="isDisabled">
             <mat-icon [svgIcon]="ICONS.files"></mat-icon>
-            <span>{{btnMoreLabel | translate}}</span>
+            <span>{{ btnMoreLabel | translate }}</span>
         </button>
     </div>
 </ng-template>

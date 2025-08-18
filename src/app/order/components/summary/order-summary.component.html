@@ -1,22 +1,22 @@
-<h2>{{summaryTitleLabel | translate}}</h2>
+<h2>{{ summaryTitleLabel | translate }}</h2>
 <div class="summary">
     <div class="summary-details">
         <div class="summary-details__item">
-            <div>{{singleLabel | translate}}</div>
-            <div>{{cost?.singleCount || 0}} x {{(price?.singlePrice || 0) | number: decimalPattern}} ₴</div>
+            <div>{{ singleLabel | translate }}</div>
+            <div>{{ cost?.singleCount || 0 }} x {{ (price?.singlePrice || 0) | number: decimalPattern }} ₴</div>
         </div>
         <div class="summary-details__item">
-            <div>{{doubleLabel | translate}}</div>
-            <div>{{cost?.doubleCount || 0}} x {{(price?.doublePrice || 0) | number: decimalPattern}} ₴</div>
+            <div>{{ doubleLabel | translate }}</div>
+            <div>{{ cost?.doubleCount || 0 }} x {{ (price?.doublePrice || 0) | number: decimalPattern }} ₴</div>
         </div>
         <div class="summary-details__item">
-            <div>{{commissionLabel | translate}}</div>
-            <div>{{(price?.serviceFee || 0) | number: decimalPattern}} ₴</div>
+            <div>{{ commissionLabel | translate }}</div>
+            <div>{{ (price?.serviceFee || 0) | number: decimalPattern }} ₴</div>
         </div>
     </div>
     <div class="summary-total">
-        <div>{{totalLabel | translate}}</div>
-        <div>{{(cost?.totalCost || 0) | number: decimalPattern}} ₴</div>
+        <div>{{ totalLabel | translate }}</div>
+        <div>{{ (cost?.totalCost || 0) | number: decimalPattern }} ₴</div>
     </div>
 </div>
 
@@ -24,9 +24,11 @@
         class="btn btn--44 btn-blue summary-btn"
         (click)="onCreateOrder()"
         [disabled]="isDisabled">
-    <ng-container *ngIf="!submitted">
-<!--        <mat-icon [svgIcon]="ICONS.payment"></mat-icon>-->
-        <span>{{btnCreateOrderLabel | translate}}</span>
-    </ng-container>
-    <mat-spinner *ngIf="submitted" diameter="20"></mat-spinner>
+    @if (!submitted) {
+        <!--        <mat-icon [svgIcon]="ICONS.payment"></mat-icon>-->
+        <span>{{ btnCreateOrderLabel | translate }}</span>
+    }
+    @if (submitted) {
+        <mat-spinner diameter="20"></mat-spinner>
+    }
 </button>

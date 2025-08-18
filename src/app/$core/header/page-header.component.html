@@ -1,5 +1,7 @@
 <div class="header">
-    <h1>{{ step?.label | translate}}</h1>
-    <steps *ngIf="!isTablet"></steps>
-    <div>{{stepLabel | translate}} {{ step?.value }}/{{ totalSteps }}</div>
+    <h1>{{ step?.label | translate }}</h1>
+    @if (!isTablet) {
+        <steps></steps>
+    }
+    <div>{{ stepLabel | translate }} {{ step?.value }}/{{ totalSteps }}</div>
 </div>
