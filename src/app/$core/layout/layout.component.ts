@@ -9,6 +9,7 @@ import {environment} from '../../../environments/environment';
     host: {
         'class': 'layout',
     },
+    standalone: false
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 

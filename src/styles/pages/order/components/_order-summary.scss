@@ -1,3 +1,6 @@
+@use 'variables';
+@use 'mixins';
+
 .order-summary {
     //flex: 1;
     display: flex;
@@ -27,7 +30,7 @@
         height: 1px;
         width: 100%;
         bottom: 0;
-        background-color: $white-12;
+        background-color: variables.$white-12;
         z-index: 1;
     }
 }
@@ -36,17 +39,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $white-64;
-    font-size: $font-size-14;
-    font-weight: $font--light;
+    color: variables.$white-64;
+    font-size: variables.$font-size-14;
+    font-weight: variables.$font--light;
 }
 
 .summary-total {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: $font-size-16;
-    font-weight: $font--medium;
+    font-size: variables.$font-size-16;
+    font-weight: variables.$font--medium;
     padding-top: 20px;
 }
 

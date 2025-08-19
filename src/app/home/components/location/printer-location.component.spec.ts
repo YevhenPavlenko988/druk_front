@@ -1,7 +1,8 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
-import {PrinterLocationComponent} from "./printer-location.component";
+import {PrinterLocationComponent} from './printer-location.component';
 
 
 describe('PrinterLocationComponent', () => {
@@ -10,11 +11,12 @@ describe('PrinterLocationComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [
-                TranslateModule.forRoot(),
-                HttpClientTestingModule,
+            imports: [TranslateModule.forRoot()],
+            providers: [
+                TranslateService,
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
             ],
-            providers: [TranslateService],
         }).compileComponents();
     }));
 

@@ -9,12 +9,13 @@
         <mat-icon [svgIcon]="ICONS.arrow_down"></mat-icon>
     </div>
     <mat-menu #locationMenu="matMenu" class="location-menu">
-        <button mat-menu-item
-                *ngFor="let p of printers"
-                class="location-menu__item"
-                (click)="goToOrder(p.id)">
-            <p>{{p.name}}</p>
-            <span>{{p.address}}</span>
-        </button>
+        @for (p of printers; track p.id) {
+            <button mat-menu-item
+                    class="location-menu__item"
+                    (click)="goToOrder(p.id)">
+                <p>{{ p.name }}</p>
+                <span>{{ p.address }}</span>
+            </button>
+        }
     </mat-menu>
 </button>

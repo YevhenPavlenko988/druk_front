@@ -19,7 +19,7 @@ $black-80: rgb(23, 27, 33, 0.8); // #1B1B1E
 // blue color
 $blue-main: rgb(0, 102, 255); // #0066FF #1265A8
 $blue-main-40: rgba(0, 102, 255, 0.4);
-$blue-dark: rgb(0, 86, 216);; // #0056D8 #3186CB
+$blue-dark: rgb(0, 86, 216); // #0056D8 #3186CB
 //
 // gray color
 $gray: rgb(164, 170, 177); // #A4AAB1
@@ -42,7 +42,7 @@ $brand--bg-40: rgb(238, 242, 248, 0.4); // #EEF2F8
 // -------------------------------------
 
 // Fonts
-$font-family: 'Inter';  // sans-serif; Geologica
+$font-family: 'Inter'; // sans-serif; Geologica
 //
 $font-size-24: 24px;
 $font-size-22: 22px;
@@ -83,33 +83,6 @@ $shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.24);
 $shadow-dropdown: 0px 4px 12px 0px rgba(0, 0, 0, 0.20);
 $shadow-dialog: 0px 4px 32px 0px rgba(0, 0, 0, 0.16);
 $shadow-light: 0px 10px 20px 0px rgba(0, 0, 0, 0.12);
-// -------------------------------------
-
-// Breakpoints
-$min: 320px; // IPhone 5/SE             = 320px
-$xxs: 375px; // IPhone 6/7/8, IPhone X  = 375px
-$xs: 500px; // ~ IPhone 6/7/8 Plus,     = 500px
-$sm: 660px; // Tablet                   = 660px
-$md: 768px; // Tablet                   = 768px
-$lg: 992px; // Tablet                   = 992px
-$xl: 1170px; // Laptop                  = 1170px
-$hd: 1280px; // Laptop                  = 1280px
-$wxga: 1440px; // Laptop                = 1440px
-$fhd: 1920px; // >= Desktop             = 1920px
-
-$media-breakpoints: (
-    'min': $min, // IPhone 5/SE
-    'xxs': $xxs, // IPhone 6/7/8, IPhone X
-    'xs': $xs, // ~ IPhone 6/7/8 Plus,
-    'sm': $sm, // Tablet
-    'md': $md, // Tablet
-    'lg': $lg, // Tablet
-    'xl': $xl, // Laptop
-    'hd': $hd, // Laptop
-    'wxga': $wxga, // Laptop
-    'fhd': $fhd, // >= Desktop
-
-);
 // -------------------------------------
 
 // Pages settings

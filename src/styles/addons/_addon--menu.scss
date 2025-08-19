@@ -1,14 +1,17 @@
+@use 'variables';
+@use 'mixins';
+
 .mat-mdc-menu-panel {
     //margin-top: $menu-panel--indent;
 }
 
 .mat-mdc-menu-content {
-    --mat-menu-item-label-text-color: #{$gray-dark};
-    --mat-menu-item-label-text-size: #{$font-size-14};
+    --mat-menu-item-label-text-color: #{variables.$gray-dark};
+    --mat-menu-item-label-text-size: #{variables.$font-size-14};
     //--mat-menu-item-label-text-weight: #{$font--light};
 
     .mat-mdc-menu-item {
-        --mat-menu-item-hover-state-layer-color: #{$menu-item--bg--hover};
+        --mat-menu-item-hover-state-layer-color: #{variables.$menu-item--bg--hover};
 
         padding-top: 3px;
         padding-bottom: 3px;

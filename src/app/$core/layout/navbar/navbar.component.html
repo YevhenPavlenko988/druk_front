@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <ng-container *ngIf="isTablet; else desktopTmpl">
+    @if (isTablet) {
         <div class="navbar-content">
             <button class="btn navbar-logo__btn-small" (click)="goHome()">
                 <mat-icon class="navbar-logo__btn-icon" [svgIcon]="ICONS.logo_small"></mat-icon>
@@ -9,17 +9,16 @@
                 <mat-icon [svgIcon]="ICONS.menu"></mat-icon>
             </button>
         </div>
-    </ng-container>
-
-    <ng-template #desktopTmpl>
+    } @else {
         <div class="navbar-content">
             <button class="btn navbar-logo__btn" (click)="goHome()">
                 <mat-icon class="navbar-logo__btn-icon" [svgIcon]="ICONS.logo"></mat-icon>
             </button>
             <button class="btn navbar-lang__btn">
-<!--                <span>{{lang}}</span>-->
+                <!--                <span>{{lang}}</span>-->
                 <mat-icon [svgIcon]="ICONS.globe"></mat-icon>
             </button>
         </div>
-    </ng-template>
+    }
+
 </mat-toolbar>

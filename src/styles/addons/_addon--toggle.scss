@@ -1,38 +1,41 @@
+@use 'variables';
+@use 'mixins';
+
 .mat-mdc-slide-toggle {
-  margin: auto 0;
+    margin: auto 0;
 }
 
 .mdc-switch {
-  .mdc-switch__track {
-    --mdc-switch-unselected-track-color: #{$brand--bg};
-    --mdc-switch-unselected-hover-track-color: #{$brand--bg};
-    --mdc-switch-unselected-focus-track-color: #{$brand--bg};
-    --mdc-switch-unselected-pressed-track-color: #{$brand--bg};
+    .mdc-switch__track {
+        --mat-slide-toggle-unselected-track-color: #{variables.$brand--bg};
+        --mat-slide-toggle-unselected-hover-track-color: #{variables.$brand--bg};
+        --mat-slide-toggle-unselected-focus-track-color: #{variables.$brand--bg};
+        --mat-slide-toggle-unselected-pressed-track-color: #{variables.$brand--bg};
 
-    --mdc-switch-selected-track-color: #{$blue-main};
-    --mdc-switch-selected-focus-track-color: #{$blue-main};
-    --mdc-switch-selected-hover-track-color: #{$blue-main};
-    --mdc-switch-selected-pressed-track-color: #{$blue-main};
-  }
-
-  .mdc-switch__handle {
-    --mdc-switch-unselected-handle-color: #{$gray-dark};
-    --mdc-switch-unselected-focus-handle-color: #{$gray-dark};
-    --mdc-switch-unselected-hover-handle-color: #{$gray-dark};
-    --mdc-switch-unselected-pressed-handle-color: #{$gray-dark};
-
-    --mdc-switch-selected-handle-color: #{$white-100};
-    --mdc-switch-selected-focus-handle-color: #{$white-100};
-    --mdc-switch-selected-hover-handle-color: #{$white-100};
-    --mdc-switch-selected-pressed-handle-color: #{$white-100};
-
-    .mdc-switch__ripple,
-    .mdc-switch__shadow {
-      display: none;
+        --mat-slide-toggle-selected-track-color: #{variables.$blue-main};
+        --mat-slide-toggle-selected-focus-track-color: #{variables.$blue-main};
+        --mat-slide-toggle-selected-hover-track-color: #{variables.$blue-main};
+        --mat-slide-toggle-selected-pressed-track-color: #{variables.$blue-main};
     }
-  }
 
-  &:disabled {
-    cursor: not-allowed !important;
-  }
+    .mdc-switch__handle {
+        --mat-slide-toggle-unselected-handle-color: #{variables.$gray-dark};
+        --mat-slide-toggle-unselected-focus-handle-color: #{variables.$gray-dark};
+        --mat-slide-toggle-unselected-hover-handle-color: #{variables.$gray-dark};
+        --mat-slide-toggle-unselected-pressed-handle-color: #{variables.$gray-dark};
+
+        --mat-slide-toggle-selected-handle-color: #{variables.$white-100};
+        --mat-slide-toggle-selected-focus-handle-color: #{variables.$white-100};
+        --mat-slide-toggle-selected-hover-handle-color: #{variables.$white-100};
+        --mat-slide-toggle-selected-pressed-handle-color: #{variables.$white-100};
+
+        .mdc-switch__ripple,
+        .mdc-switch__shadow {
+            display: none;
+        }
+    }
+
+    &:disabled {
+        cursor: not-allowed !important;
+    }
 }

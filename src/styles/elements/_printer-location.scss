@@ -1,3 +1,6 @@
+@use 'variables';
+@use 'mixins';
+
 .printer-location {
     display: flex;
     width: 360px;
@@ -9,9 +12,9 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    background: $brand--bg;
-    border: 1px solid $white-12;
-    border-radius: $btn--border-radius;
+    background: variables.$brand--bg;
+    border: 1px solid variables.$white-12;
+    border-radius: variables.$btn--border-radius;
     padding: 16px;
 }
 
@@ -23,35 +26,35 @@
     height: 48px;
     min-width: 48px;
     border-radius: 50%;
-    background: $blue-main;
-    color: $white-100;
+    background: variables.$blue-main;
+    color: variables.$white-100;
 }
 
 .location-btn__action {
-    color: $gray-dark;
+    color: variables.$gray-dark;
 }
 
 .location-menu {
     &.mat-mdc-menu-panel {
-        --mat-menu-container-shape: #{$dialog--shape};
+        --mat-menu-container-shape: #{variables.$dialog--shape};
 
         //width: calc(320px - 16px - 16px); // padding: 16px 16px 8px 16px;
         //max-width: calc(320px - 16px - 16px);
         width: 360px;
         max-width: 360px;
         margin-top: 8px;
-        background: $brand--bg;
-        border: $border-width $border-style $white-12;
+        background: variables.$brand--bg;
+        border: variables.$border-width variables.$border-style variables.$white-12;
     }
 
     .mat-mdc-menu-content {
         .mat-mdc-menu-item {
-            --mat-menu-item-hover-state-layer-color: #{$black-80};
+            --mat-menu-item-hover-state-layer-color: #{variables.$black-80};
         }
     }
 }
 
 .location-menu__item p {
-    font-size: $font-size-16;
-    color: $white-64;
+    font-size: variables.$font-size-16;
+    color: variables.$white-64;
 }

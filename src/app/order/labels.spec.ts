@@ -1,5 +1,6 @@
 import {TestBed, waitForAsync} from '@angular/core/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {TranslateService} from '@ngx-translate/core';
 import {getTranslateModule} from '../../testing/mockTranslateModule';
 import {
@@ -31,11 +32,12 @@ describe('order#translates', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [],
-            imports: [
-                HttpClientTestingModule,
-                getTranslateModule(),
+            imports: [getTranslateModule()],
+            providers: [
+                TranslateService,
+                provideHttpClient(withInterceptorsFromDi()),
+                provideHttpClientTesting(),
             ],
-            providers: [TranslateService],
         }).compileComponents();
         translateService = TestBed.inject(TranslateService);
     }));

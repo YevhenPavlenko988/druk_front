@@ -1,15 +1,18 @@
+@use 'variables';
+@use 'mixins';
+
 //
 //
 h1 {
-    font-size: $font-size-22;
-    font-weight: $font--bold;
-    line-height: $font--22-line-height;
+    font-size: variables.$font-size-22;
+    font-weight: variables.$font--bold;
+    line-height: variables.$font--22-line-height;
 }
 
 h2 {
-    font-size: $font-size-18;
-    font-weight: $font--bold;
-    line-height: $font--18-line-height;
+    font-size: variables.$font-size-18;
+    font-weight: variables.$font--bold;
+    line-height: variables.$font--18-line-height;
 }
 
 h3 {
@@ -19,12 +22,12 @@ h4 {
 }
 
 h5 {
-    font-size: $font-size-16;
-    font-weight: $font--bold;
-    line-height: $font--16-line-height;
+    font-size: variables.$font-size-16;
+    font-weight: variables.$font--bold;
+    line-height: variables.$font--16-line-height;
 }
 
-@include media-breakpoint-down(hd) {
+@include mixins.media-breakpoint-down(hd) {
     h1 {
     }
 
@@ -41,7 +44,7 @@ h5 {
     }
 }
 
-@include media-breakpoint-down(lg) {
+@include mixins.media-breakpoint-down(lg) {
     h1 {
     }
 
@@ -58,15 +61,15 @@ h5 {
     }
 }
 
-@include media-breakpoint-down(xs) {
+@include mixins.media-breakpoint-down(xs) {
     h1 {
-        font-size: $font-size-20;
-        line-height: $font--20-line-height;
+        font-size: variables.$font-size-20;
+        line-height: variables.$font--20-line-height;
     }
 
     h2 {
-        font-size: $font-size-16;
-        line-height: $font--16-line-height;
+        font-size: variables.$font-size-16;
+        line-height: variables.$font--16-line-height;
     }
 
     h3 {
@@ -76,7 +79,7 @@ h5 {
     }
 
     h5 {
-        font-size: $font-size-14;
-        line-height: $font--14-line-height;
+        font-size: variables.$font-size-14;
+        line-height: variables.$font--14-line-height;
     }
 }

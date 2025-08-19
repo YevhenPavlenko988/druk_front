@@ -1,6 +1,6 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,9 +24,10 @@ export function initializeLanguage(languageService: LanguageService) {
     declarations: [
         AppComponent,
     ],
+    exports: [],
+    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
-        HttpClientModule,
         BrowserAnimationsModule,
         CommonModule,
         LayoutModule,
@@ -37,9 +38,7 @@ export function initializeLanguage(languageService: LanguageService) {
                 deps: [HttpClient],
             },
         }),
-        RouterModule.forRoot(routes),
-    ],
-    exports: [],
+        RouterModule.forRoot(routes)],
     providers: [
         {
             provide: APP_INITIALIZER,
@@ -47,8 +46,8 @@ export function initializeLanguage(languageService: LanguageService) {
             deps: [LanguageService],
             multi: true,
         },
-    ],
-    bootstrap: [AppComponent],
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
 })
 export class AppModule {
 }

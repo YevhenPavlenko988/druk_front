@@ -1,3 +1,6 @@
+@use 'variables';
+@use 'mixins';
+
 .pg-steps {
     display: flex;
     align-items: center;
@@ -12,16 +15,16 @@
 .steps__item {
     width: 48px;
     height: 4px;
-    background: $white-20;
+    background: variables.$white-20;
     border-radius: 16px;
 }
 
 .steps__item.active,
 .steps__item.completed {
-    background: $blue-main;
+    background: variables.$blue-main;
 }
 
-@include media-breakpoint-down(xxs) {
+@include mixins.media-breakpoint-down(xxs) {
     .steps__item {
         width: 44px;
     }

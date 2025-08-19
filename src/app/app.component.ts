@@ -7,6 +7,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
     template: `
         <app-layout></app-layout>
     `,
+    standalone: false
 })
 export class AppComponent {
 }

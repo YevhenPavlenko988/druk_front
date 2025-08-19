@@ -8,8 +8,8 @@ describe('AppComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [AppComponent, TestLaLayout],
-            imports: [],
+            declarations: [AppComponent],
+            imports: [TestLaLayout],
             providers: [],
         }).compileComponents();
     }));

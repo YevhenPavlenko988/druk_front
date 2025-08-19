@@ -1,11 +1,14 @@
+@use 'variables';
+@use 'mixins';
+
 .btn {
     position: relative;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     color: inherit;
-    font-size: $btn--font-size;
-    font-weight: $btn--font-weight;
+    font-size: variables.$btn--font-size;
+    font-weight: variables.$btn--font-weight;
     white-space: nowrap;
     text-decoration: none;
     text-align: center;
@@ -29,9 +32,9 @@
     }
 
     .mat-icon {
-        height: $icon-size;
-        width: $icon-size;
-        min-width: $icon-size;
+        height: variables.$icon-size;
+        width: variables.$icon-size;
+        min-width: variables.$icon-size;
         vertical-align: middle;
         transition: transform 300ms ease, color 300ms ease;
     }
@@ -43,9 +46,9 @@
 
 // btn size
 .btn--44 {
-    height: $btn--height;
-    min-height: $btn--height;
-    min-width: $btn--width;
+    height: variables.$btn--height;
+    min-height: variables.$btn--height;
+    min-width: variables.$btn--width;
 }
 
 .btn--f1 {
@@ -54,74 +57,74 @@
 
 //
 .btn-icon {
-    height: $btn--height;
-    min-height: $btn--height;
-    min-width: $btn--icon-width;
+    height: variables.$btn--height;
+    min-height: variables.$btn--height;
+    min-width: variables.$btn--icon-width;
 
     &:disabled {
         .mat-icon {
-            color: $gray-dark;
+            color: variables.$gray-dark;
         }
     }
 }
 
 // btn background
 .btn-blue {
-    --mdc-circular-progress-active-indicator-color: #{$white-100};
+    --mat-progress-spinner-active-indicator-color: #{variables.$white-100};
 
-    background: $blue-main;
-    color: $white-100;
-    border-radius: $btn--border-radius;
+    background: variables.$blue-main;
+    color: variables.$white-100;
+    border-radius: variables.$btn--border-radius;
 
     &:hover {
-        background: $blue-dark;
+        background: variables.$blue-dark;
     }
 
     &.disabled, &[disabled] {
-        background: $blue-main-40;
+        background: variables.$blue-main-40;
     }
 }
 
 .btn-gray {
     background: transparent;
-    color: $gray-dark;
-    border-radius: $btn--border-radius;
+    color: variables.$gray-dark;
+    border-radius: variables.$btn--border-radius;
 
     &:hover {
-        color: $blue-dark;
+        color: variables.$blue-dark;
     }
 
     &.disabled, &[disabled] {
-        color: $gray-dark-40;
+        color: variables.$gray-dark-40;
     }
 }
 
 .btn-transparent {
-    --mdc-circular-progress-active-indicator-color: #{$white-64};
+    --mat-progress-spinner-active-indicator-color: #{variables.$white-64};
 
     background: transparent;
-    color: $white-100;
-    border: $border-width $border-style $white-24;
-    border-radius: $btn--border-radius;
+    color: variables.$white-100;
+    border: variables.$border-width variables.$border-style variables.$white-24;
+    border-radius: variables.$btn--border-radius;
 
     &:hover {
-        background: $white-08;
+        background: variables.$white-08;
     }
 
     &.disabled, &[disabled] {
-        color: $white-64;
-        border-color: $white-12;
+        color: variables.$white-64;
+        border-color: variables.$white-12;
     }
 }
 
-@include media-breakpoint-down(hd) {
+@include mixins.media-breakpoint-down(hd) {
     .btn--44 {
-        min-width: $btn--width-min;
+        min-width: variables.$btn--width-min;
     }
 }
 
-@include media-breakpoint-down(xs) {
-    .btn{
-        font-size: $btn--font-size-min;
+@include mixins.media-breakpoint-down(xs) {
+    .btn {
+        font-size: variables.$btn--font-size-min;
     }
 }
