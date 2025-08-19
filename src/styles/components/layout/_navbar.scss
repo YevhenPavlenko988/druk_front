@@ -1,7 +1,10 @@
+@use 'variables';
+@use 'mixins';
+
 .layout-navbar {
     --mat-toolbar-standard-height: 72px;
-    --mat-toolbar-container-background-color: #{$brand--bg};
-    --mat-toolbar-container-text-color: #{$white-100};
+    --mat-toolbar-container-background-color: #{variables.$brand--bg};
+    --mat-toolbar-container-text-color: #{variables.$white-100};
 
     position: relative;
     display: flex;
@@ -15,7 +18,7 @@
         height: 1px;
         width: 100%;
         bottom: 0;
-        background-color: $white-12;
+        background-color: variables.$white-12;
         z-index: 1;
     }
 }
@@ -53,11 +56,11 @@
 
 .navbar-lang__btn {
     span {
-        font-size: $font-size-14;
+        font-size: variables.$font-size-14;
     }
 
     .mat-icon {
-        color: $gray-dark;
+        color: variables.$gray-dark;
     }
 }
 
@@ -65,7 +68,7 @@
 
 }
 
-@include media-breakpoint-down(lg) {
+@include mixins.media-breakpoint-down(lg) {
     .layout-navbar {
         --mat-toolbar-standard-height: 64px;
     }

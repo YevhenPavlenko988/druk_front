@@ -1,7 +1,21 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
+
+@use '@fontsource/inter';
+
+@use 'theme';
+@use 'variables';
+@use 'mixins';
+//
+// base styles and utilities
+@use 'misc';
+@use 'typography';
+@use 'components';
+@use 'elements';
+@use 'addons';
+@use 'pages';
+
 
 // Include the $core styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -39,10 +53,6 @@ $druk-theme: mat.define-theme((
     @include mat.all-component-themes($druk-theme);
 }
 
-/* You can add global styles to this file, and also import other style files */
-
-@import '@fontsource/inter';
-
 html, body {
     height: 100%;
 }
@@ -51,44 +61,3 @@ body {
     margin: 0;
     font-family: "Inter", sans-serif;
 }
-
-//
-//
-@import 'theme';
-
-//
-//
-@import 'variables';
-@import 'mixins';
-
-//
-// base styles and utilities
-@import 'misc';
-@import 'typography';
-
-//
-// Components
-@import 'components/layout';
-@import 'components/header';
-@import 'components/steps';
-
-//
-// Elements
-@import 'elements/buttons';
-@import 'elements/printer-location';
-
-//
-// Addons
-@import 'addons/addon--menu';
-@import 'addons/addon--dialog';
-@import 'addons/addon--toggle';
-@import 'addons/addon--notify';
-@import 'addons/addon--checkbox';
-
-//
-// Pages
-@import 'pages/home';
-@import 'pages/order/order';
-@import 'pages/order/components/order-files';
-@import 'pages/order/components/order-summary';
-@import 'pages/print';

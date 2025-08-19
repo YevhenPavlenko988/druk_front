@@ -1,10 +1,13 @@
+@use 'variables';
+@use 'mixins';
+
 .layout-footer {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
     //min-height: $footer--height;
-    background: $brand--bg;
+    background: variables.$brand--bg;
 
     &:before {
         content: '';
@@ -12,7 +15,7 @@
         height: 1px;
         width: 100%;
         top: 0;
-        background-color: $white-12;
+        background-color: variables.$white-12;
         z-index: 1;
     }
 }
@@ -24,7 +27,7 @@
     gap: 24px;
     width: 100%;
     max-width: 1272px; // max-width: 1240px; + padding: 0 16px;
-    font-weight: $font--light;
+    font-weight: variables.$font--light;
     padding: 24px 16px;
     margin: 0 auto;
 }
@@ -32,14 +35,14 @@
 .footer__links {
     display: flex;
     gap: 16px;
-    font-size: $font-size-16;
+    font-size: variables.$font-size-16;
 }
 
 .footer__logo {
     display: flex;
     align-items: center;
     gap: 24px;
-    color: $gray-dark;
+    color: variables.$gray-dark;
 
     &.mat-icon {
         width: 74px;
@@ -48,7 +51,7 @@
     }
 }
 
-@include media-breakpoint-down(md) {
+@include mixins.media-breakpoint-down(md) {
     .footer__content {
         flex-direction: column;
     }

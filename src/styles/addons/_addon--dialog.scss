@@ -1,25 +1,28 @@
+@use 'variables';
+@use 'mixins';
+
 .cdk-overlay-pane.mat-mdc-dialog-panel {
     --mat-dialog-container-small-max-width: 90vh;
     max-width: var(--mat-dialog-container-small-max-width, 90vw);
 }
 
 .mat-mdc-dialog-container {
-    --mdc-dialog-container-color: #{$brand--bg};
+    --mat-dialog-container-color: #{variables.$brand--bg};
 
     padding: 0 16px;
 
     .mdc-dialog__surface {
-        --mdc-dialog-container-shape: #{$dialog--shape};
+        --mat-dialog-container-shape: #{variables.$dialog--shape};
 
-        border: $border-width $border-style $white-12;
+        border: variables.$border-width variables.$border-style variables.$white-12;
     }
 
     .mdc-dialog__title {
-        --mdc-dialog-subhead-color: #{$white-100};
-        --mdc-dialog-subhead-font: "Inter", sans-serif;
-        --mdc-dialog-subhead-size: #{$font-size-20};
-        --mdc-dialog-subhead-weight: #{$font--bold};
-        --mdc-dialog-subhead-line-height: #{$font--20-line-height};
+        --mat-dialog-subhead-color: #{variables.$white-100};
+        --mat-dialog-subhead-font: "Inter", sans-serif;
+        --mat-dialog-subhead-size: #{variables.$font-size-20};
+        --mat-dialog-subhead-weight: #{variables.$font--bold};
+        --mat-dialog-subhead-line-height: #{variables.$font--20-line-height};
         --mat-dialog-headline-padding: 0 24px;
 
         text-align: center;
@@ -30,7 +33,7 @@
     }
 
     .mdc-dialog__content {
-        --mdc-dialog-supporting-text-color: #{$white-64};
+        --mat-dialog-supporting-text-color: #{variables.$white-64};
 
         text-align: center;
     }
@@ -56,8 +59,8 @@
     justify-content: var(--mat-dialog-actions-alignment, start);
 }
 
-@include media-breakpoint-down(xs) {
+@include mixins.media-breakpoint-down(xs) {
     .mat-mdc-dialog-container {
-        --mdc-dialog-supporting-text-size: #{$font-size-15};
+        --mat-dialog-supporting-text-size: #{variables.$font-size-15};
     }
 }

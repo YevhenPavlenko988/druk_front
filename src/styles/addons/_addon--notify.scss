@@ -1,15 +1,18 @@
+@use 'variables';
+@use 'mixins';
+
 .mat-mdc-snack-bar-container {
-  --mdc-snackbar-supporting-text-color: #{$black-80};
+    --mat-snackbar-supporting-text-color: #{variables.$black-80};
 
-  &.notify {
-    margin-top: 72px;
-  }
+    &.notify {
+        margin-top: 72px;
+    }
 
-  &.success {
-    --mdc-snackbar-container-color: #{$technical-green};
-  }
+    &.success {
+        --mat-snackbar-container-color: #{variables.$technical-green};
+    }
 
-  &.error {
-    --mdc-snackbar-container-color: #{$technical-red};
-  }
+    &.error {
+        --mat-snackbar-container-color: #{variables.$technical-red};
+    }
 }
